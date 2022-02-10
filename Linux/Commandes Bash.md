@@ -153,7 +153,7 @@ En combinant les commandes `ls`, `xargs`, et `cp`, il est possible de copier une
 
 La commande `date` renvoie la date courante.    
 
-> ```console    
+ ```console    
 $ date    
 Sun Mar 15 09:44:49 CET 2020    
 ```    
@@ -161,14 +161,14 @@ Sun Mar 15 09:44:49 CET 2020
 On peut mettre en forme la date avec des options.    
 *Par exemple :*    
 
-> ```shell    
+```shell    
 $ date "+%d/%m/%Y %Hh%M"    
 15/03/2020 09h46    
 ```    
 
 On peut récupérer la date de dernière modification d'un fichier avec l'option `-r`.    
 
-> ```shell
+ ```shell
 date -r "Commandes Bash.md"
 jeu. 10 févr. 2022 22:40:48 CET
 ```
