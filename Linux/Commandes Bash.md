@@ -11,7 +11,7 @@
 `$_` est une variable contenant le dernier argument de la commande précédente    
 
 > #### Exemple :    
-`mkdir dossier && cd $_` : crée le répertoire "dossier" et s'y déplace    
+> `mkdir dossier && cd $_` : crée le répertoire "dossier" et s'y déplace    
 
 ### Modifier une partie de la dernière commande    
 
