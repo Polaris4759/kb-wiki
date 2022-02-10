@@ -242,7 +242,7 @@ Chercher un fichier
 
 `+` : Pour supérieur    
 `-` : Pour inférieur    
-` ` : Rien pour égale     
+`  ` : Rien pour égale     
 `c` : Pour Octet    
 `k` : Pour KiloOctet    
 `M` : Pour MégaOctet    
