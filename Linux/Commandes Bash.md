@@ -91,7 +91,7 @@ Gestionnaire d'installation de paquets
 `apt install <paquet>` : Installer      
 `apt remove <paquet>` : Désinstaller    
 `apt autoremove <paquet>` : Désinstaller    
-`apt-file search <fichier>` : Chercher à quel paquet appartien un fichier    
+`apt-file search <fichier>` : Chercher à quel paquet appartient un fichier    
 `apt-cache search <paquet>` : Chercher un paquet dans le repo    
 
 ## blkid    
@@ -120,6 +120,7 @@ Changer les permissions
 
 <u>**Attention**</u>    
 
+`755 (= rwxrw-rw-)` : Donne les droits d'écriture et de lecture à tout le monde, d'exécution au propriétaire  
 `777 (= rwxrwxrwx)` : Donne tous les droits à tout le monde    
 `a+x` : Ajoute l'exécution à tout le monde    
 `g+w` : Donne les droits d'écriture au groupe propriétaire    
@@ -152,7 +153,7 @@ En combinant les commandes `ls`, `xargs`, et `cp`, il est possible de copier une
 
 La commande `date` renvoie la date courante.    
 
-```console    
+> ```console    
 $ date    
 Sun Mar 15 09:44:49 CET 2020    
 ```    
@@ -160,12 +161,17 @@ Sun Mar 15 09:44:49 CET 2020
 On peut mettre en forme la date avec des options.    
 *Par exemple :*    
 
-```shell    
+> ```shell    
 $ date "+%d/%m/%Y %Hh%M"    
 15/03/2020 09h46    
 ```    
 
 On peut récupérer la date de dernière modification d'un fichier avec l'option `-r`.    
+
+> ```shell
+date -r "Commandes Bash.md"
+jeu. 10 févr. 2022 22:40:48 CET
+```
 
 ## dpkg    
 
