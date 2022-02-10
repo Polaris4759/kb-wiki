@@ -9,6 +9,6 @@ C'est également mon premier projet concret sur GitHub
 Initalement hébergé sur un site web, les fichiers en markdown étaient convertis avec pandoc et transférer de façon automatisé sur un hébergement.  
 La migration sur GitHub nécessiste à présent certaines actions pour que cette KB soit correcte.
 
-[x] Transfert  
-[ ] Relecture  
-[ ] Mise en forme propre  
+ - [x] Transfert  
+ - [ ] Relecture  
+ - [ ] Mise en forme propre  
