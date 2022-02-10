@@ -162,7 +162,7 @@ Sun Mar 15 09:44:49 CET 2020
 >> On peut mettre en forme la date avec des options.    
 *Par exemple :*    
     
-```console    
+```shell    
 $ date "+%d/%m/%Y %Hh%M"    
 15/03/2020 09h46    
 ```    
