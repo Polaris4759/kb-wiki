@@ -308,7 +308,7 @@ Chercher un fichier
 `y` : Année "aa"    
 `Y` : Année "aaaa"    
 
-> Exemple :    
+> *Exemple :*    
 > `find /var/log -type f -name "*fichier*" -perm 755 -exec grep -iHn libpng {} \; 2> /dev/null`    
 >  
 > `find` : trouve    
