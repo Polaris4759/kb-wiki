@@ -309,9 +309,8 @@ Chercher un fichier
 `Y` : Année "aaaa"    
 
 > Exemple :    
-
 > `find /var/log -type f -name "*fichier*" -perm 755 -exec grep -iHn libpng {} \; 2> /dev/null`    
-
+>  
 > `find` : trouve    
 > `/var/log` : où?    
 > `-type f` : un fichier de type fichier    
