@@ -153,7 +153,7 @@ En combinant les commandes `ls`, `xargs`, et `cp`, il est possible de copier une
 
 La commande `date` renvoie la date courante.    
 
- ```console    
+```console    
 $ date    
 Sun Mar 15 09:44:49 CET 2020    
 ```    
@@ -168,8 +168,8 @@ $ date "+%d/%m/%Y %Hh%M"
 
 On peut récupérer la date de dernière modification d'un fichier avec l'option `-r`.    
 
- ```shell
-date -r "Commandes Bash.md"
+```shell
+$ date -r "Commandes Bash.md"
 jeu. 10 févr. 2022 22:40:48 CET
 ```
 
@@ -186,7 +186,7 @@ dpkg-query -l <paquet>
 apt-cache showpkg <paquet>    
 ```    
 
-<u>**Attention :**</u> l'option `-L` liste les fichiers d'un `<paquet>`.    
+L'option `-L` liste les fichiers d'un `<paquet>`.    
 
 `dpkg-query -L <paquet>`    
 
@@ -223,26 +223,26 @@ Chercher un fichier
 ### Options possibles :    
 
 `!` : Pour la négation *(ex : ! -user root)*    
-`a` : Pour "et"    
-`o` : Pour "ou" *(ex : find . \( -name '*.avi' -o -name '*.mp4' \) pour les fichiers se terminant par avi ou mp4)*    
+`-a` : Pour "et"    
+`-o` : Pour "ou" *(ex : find . \( -name '*.avi' -o -name '*.mp4' \) pour les fichiers se terminant par avi ou mp4)*    
 
-`name` : Nom de fichier _ex : `-name` "\*.mp4"_    
-`perm` : Niveau de permission *(ex : 755 ou -655 pour au minimum 655)*    
-`user` : Utilisateur    
-`group` : Groupe    
-`maxdepth x` : Profondeur maximum    
-`mindepth x` : Profondeur minimum    
-`type` : Type de fichier    
+`-name` : Nom de fichier _ex : `-name` "\*.mp4"_    
+`-perm` : Niveau de permission *(ex : 755 ou -655 pour au minimum 655)*    
+`-user` : Utilisateur    
+`-group` : Groupe    
+`-maxdepth x` : Profondeur maximum    
+`-mindepth x` : Profondeur minimum    
+`-type` : Type de fichier **(Fichier, dossier, etc...)**  
 
-`f` : Fichier    
-`d` : Répertoire    
-`l` : Lien symbolique    
+`-f` : Fichier    
+`-d` : Répertoire    
+`-l` : Lien symbolique    
 
-`size` : Taille    
+`-size` : Taille    
 
 `+` : Pour supérieur    
 `-` : Pour inférieur    
-<span style="visibility:hidden;">--</span> : Rien pour égale     
+` ` : Rien pour égale     
 `c` : Pour Octet    
 `k` : Pour KiloOctet    
 `M` : Pour MégaOctet    
