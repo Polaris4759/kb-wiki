@@ -4,7 +4,9 @@
 
 Dans un terminal Windows en tant qu'admin :  
 
-`reg add "HKCU\Software\Classes\CLSID\{d93ed569-3b3e-4bff-8355-3c44f6a52bb5}\InprocServer32" /f /ve`
+```Batchfile
+reg add "HKCU\Software\Classes\CLSID\{d93ed569-3b3e-4bff-8355-3c44f6a52bb5}\InprocServer32" /f /ve
+```
 Puis redémarrer l'exlorer.exe
 
 Pour revenir à la barre d'outil Windows 11 :  
