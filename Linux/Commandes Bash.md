@@ -4,7 +4,7 @@
     
 > ### $?    
     
->> `$?` est une variable dans laquelle est stocké le code erreur de la commande précédemment exécutée.    
+`$?` est une variable dans laquelle est stocké le code erreur de la commande précédemment exécutée.    
     
 > ### $_    
     
