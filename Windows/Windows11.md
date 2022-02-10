@@ -26,7 +26,7 @@ Puis redémarrer l'exlorer.exe
 
 ## Redémarrer l'explorer.exe  
 Dans un terminal, lancer les commandes suivantes : 
-  ```console
+  ```Batchfile
   taskkill /f /IM explorer.exe
   start explorer.exe
   ```
