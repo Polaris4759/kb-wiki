@@ -2,7 +2,7 @@
 
 L'idée de cette KB est de regrouper toutes les commandes et astuces qui me sont utiles à un moment ou à un autre.  
 Elle n'a pas pour but premier d'être partagée, ou de servir de référence à qui que ce soit, mais elle n'a rien de confidentielle.  
-__Donc si elle peut servir à quelqu'un d'autre, alors **tant mieux**__ :wink:  
+**Donc si elle peut servir à quelqu'un d'autre, alors _tant mieux_** :wink:  
 
 C'est également mon premier projet concret sur GitHub  
 
