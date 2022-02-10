@@ -66,3 +66,12 @@ telnet towel.blinkenlights.nl
 `powercfg /requests` : Liste de ce qui maintient le PC eveillé    
 `powercfg /requestsoverride` : Liste ce qui a été exclu par l'utilisateur    
 `powercfg -requestsoverride DRIVER "<nom_du_driver>" awaymode display system` : Ajoute le driver <nom_du_driver> à la liste de ce qui ne doit pas maintenir eveillé le PC    
+
+## Windows 11  
+
+### Remettre la barre d'outil en haut de l'explorateur de fichier  
+
+`reg add "HKCU\Software\Classes\CLSID\{d93ed569-3b3e-4bff-8355-3c44f6a52bb5}\InprocServer32" /f /ve`
+
+Pour revenir à la barre d'outil Windows 11 :  
+`reg delete "HKCU\Software\Classes\CLSID\{d93ed569-3b3e-4bff-8355-3c44f6a52bb5}" /f`  
