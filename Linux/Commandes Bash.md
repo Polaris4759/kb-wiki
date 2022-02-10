@@ -242,28 +242,28 @@ Chercher un fichier
 
 `+` : Pour supérieur    
 `-` : Pour inférieur    
-`  ` : Rien pour égale     
+` ` : Rien pour égale     
 `c` : Pour Octet    
 `k` : Pour KiloOctet    
 `M` : Pour MégaOctet    
 `G` : Pour GigaOctet    
 
-`atime` : Dernière date d'accès    
-`ctime` : Dernière date de modification du fichier ou des ses attributs    
-`mtime` : Dernière date de modification du contenu du fichier    
-`amin` : Dernière date d'accès en minutes    
-`cmin` : Dernière date de modification du fichier en minutes    
-`mmin` : Dernière date de modification du contenu du fichier en minutes    
-`daytime` : Pour rechercher à partir du début du jour spécifié    
-`newer` : Pour comparer à un autre fichier|    
+`-atime` : Dernière date d'accès    
+`-ctime` : Dernière date de modification du fichier ou des ses attributs    
+`-mtime` : Dernière date de modification du contenu du fichier    
+`-amin` : Dernière date d'accès en minutes    
+`-cmin` : Dernière date de modification du fichier en minutes    
+`-mmin` : Dernière date de modification du contenu du fichier en minutes    
+`-daytime` : Pour rechercher à partir du début du jour spécifié    
+`-newer` : Pour comparer à un autre fichier|    
 
 `+` : Pour supérieur    
 `-` : Pour inférieur    
-<span style="visibility:hidden;">--</span> : Rien pour égale     
+` ` : Rien pour égale     
 
-*ex : `find . -mtime +60` affiche les fichiers modifier il y à plus de 60 jours*    
-*ex : `find . -mtime 1 -daytime` retourne les fichiers modifier la veille (Et non pas il y a 24h)*|    
-*ex : `find /tmp -newer /tmp/foo`*    
+> *ex : `find . -mtime +60` affiche les fichiers modifier il y à plus de 60 jours*    
+> *ex : `find . -mtime 1 -daytime` retourne les fichiers modifier la veille (Et non pas il y a 24h)*|    
+> *ex : `find /tmp -newer /tmp/foo`*    
 
 `printf` : Pour spécifier ce qu'il faut afficher    
 
@@ -308,22 +308,22 @@ Chercher un fichier
 `y` : Année "aa"    
 `Y` : Année "aaaa"    
 
-### Exemple :    
+> Exemple :    
 
-`find /var/log -type f -name "*fichier*" -perm 755 -exec grep -iHn libpng {} \; 2> /dev/null`    
+> `find /var/log -type f -name "*fichier*" -perm 755 -exec grep -iHn libpng {} \; 2> /dev/null`    
 
-`find` : trouve    
-`/var/log` : où?    
-`-type f` : un fichier de type fichier    
-`-name "*fichier*"` : un fichier contenant la chaine "fichier"    
-`-perm 755` : un fichier ayant les permissions 755    
-`-exec` : exécute    
-`-iHn` : Non sensible à la casse, affiche le nom du fichier, et la ligne    
-`libpng` : chaîne à rechercher    
-`{}` : sur chaque fichier correspondant au `find`    
-`\;` : fin de la commande find (obligatoire avec `-exec`)    
-`2>` : envoie les erreurs dans    
-`/dev/null` : le néant    
+> `find` : trouve    
+> `/var/log` : où?    
+> `-type f` : un fichier de type fichier    
+> `-name "*fichier*"` : un fichier contenant la chaine "fichier"    
+> `-perm 755` : un fichier ayant les permissions 755    
+> `-exec` : exécute    
+> `-iHn` : Non sensible à la casse, affiche le nom du fichier, et la ligne    
+> `libpng` : chaîne à rechercher    
+> `{}` : sur chaque fichier correspondant au `find`    
+> `\;` : fin de la commande find (obligatoire avec `-exec`)    
+> `2>` : envoie les erreurs dans    
+> `/dev/null` : le néant    
 
 ## fsck    
 
