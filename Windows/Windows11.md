@@ -25,9 +25,7 @@ Pour revenir en arrière :
 Puis redémarrer l'exlorer.exe[^note]
 
 [^note]: Redémarrer l'explorer.exe  
-
   Dans un terminal, lancer les commandes suivantes : 
-
   ```console
   taskkill /f /IM explorer.exe
   start explorer.exe
