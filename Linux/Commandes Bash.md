@@ -375,8 +375,8 @@ Rechercher un fichier
 
 `locate <fichier>`    
 
-*<u>Avantage :</u> Rapide*    
-*<u>Inconvénient :</u> Ne trouve pas un fichier récent. locate effectue la recherche dans une base de donnée. Il est possible de la mettre à jour avec la commande updatedb*    
+**Avantage :** *Rapide*    
+**Inconvénient :** *Ne trouve que ce qui a été indéxe. Pour forcer l'indéxation avec `updatedb`*    
 
 ## ls    
 
