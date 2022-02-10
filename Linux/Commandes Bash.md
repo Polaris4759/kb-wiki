@@ -1,23 +1,21 @@
-#  Commandes console    
+# Commandes particulières et autres astuces    
 
-## Commandes particulières et autres astuces    
-
-### $?    
+## $?    
 
 `$?` est une variable dans laquelle est stocké le code erreur de la commande précédemment exécutée.    
 
-### $_    
+## $_    
 
 `$_` est une variable contenant le dernier argument de la commande précédente    
 
 > #### Exemple :    
 > `mkdir dossier && cd $_` : crée le répertoire "dossier" et s'y déplace    
 
-### Modifier une partie de la dernière commande    
+## Modifier une partie de la dernière commande    
 
 `^ancien_texte^nouveau_texte`    
 
-### Utilisateurs et groupes    
+## Utilisateurs et groupes    
 
 Afficher les groupes    
 
@@ -35,7 +33,7 @@ Afficher les utilisateurs appartenant à un groupe
 
 `grep <groupe> /etc/group`    
 
-### Modifier une variable en suivant un pattern    
+## Modifier une variable en suivant un pattern    
 
 En utilisant sed :    
 
@@ -46,31 +44,31 @@ En utilisant sed :
 `var=<chaine>;echo ${var/pattern/chaine_de_remplacement}`  
 `var=<chaine>;echo ${var//pattern/chaine_de_remplacement}` : `//` permet de remplacer toutes les occurrences    
 
-### Modification d'une variable  
+## Modification d'une variable  
 
-#### Supprimer les x premiers caractères d'une variable  
+### Supprimer les x premiers caractères d'une variable  
 
 `var=${var:x}`  
 *où __x__ correspond au nombre de caractères à supprimer*    
 
-#### Changer la casse d'une variable  
+### Changer la casse d'une variable  
 
 `var=${var,,}` : Variable en minuscule.  
 `var=${var^^}`: Variable en majuscule.  
 
-#### Obtenir X caractères à partir du Nième caractère    
+### Obtenir X caractères à partir du Nième caractère    
 
 `var=${var:N:X}`  
 
-## Commandes courantes et leurs syntaxes    
+# Commandes courantes et leurs syntaxes    
 
-### addgroup    
+## addgroup    
 
 Ajouter un groupe    
 
 `addgroup <groupe>`      
 
-### adduser    
+## adduser    
 
 Ajouter un utilisateur    
 
@@ -80,13 +78,13 @@ Ajouter un utilisateur à un groupe
 
 `adduser <utilisateur> <groupe>`    
 
-### apropos    
+## apropos    
 
 Permet de chercher des commandes lié à un mot clé    
 
 `apropos <mot clé>`    
 
-### apt    
+## apt    
 
 Gestionnaire d'installation de paquets    
 
@@ -96,25 +94,25 @@ Gestionnaire d'installation de paquets
 `apt-file search <fichier>` : Chercher à quel paquet appartien un fichier    
 `apt-cache search <paquet>` : Chercher un paquet dans le repo    
 
-### blkid    
+## blkid    
 
 Liste les UUID, Label et Type de chaque partition montée    
 
 `blkid`    
 
-### cal    
+## cal    
 
 Affiche un calendrier    
 
 `cal 07 1988` : Affiche le mois de juillet 1988    
 
-### chgrp    
+## chgrp    
 
 Changer le groupe propriétaire    
 
 `chgrp <groupe> <fichier>`    
 
-### chmod    
+## chmod    
 
 Changer les permissions    
 
@@ -126,7 +124,7 @@ Changer les permissions
 `a+x` : Ajoute l'exécution à tout le monde    
 `g+w` : Donne les droits d'écriture au groupe propriétaire    
 
-### chown    
+## chown    
 
 Changer le propriétaire d'un fichier    
 
@@ -136,7 +134,7 @@ Changement de façon récursive (sous-dossier)
 
 `chown -R <utilisateur>:<groupe> <fichier>`    
 
-### cp    
+## cp    
 
 La commande `cp` permet de copier un fichier vers une destination. Il est possible de le copier en modifiant le nom du nouveau fichier.    
 
@@ -150,7 +148,7 @@ En combinant les commandes `ls`, `xargs`, et `cp`, il est possible de copier une
 
 `ls *.sh | xargs -I % cp % save/%_$(date "+%Y.%m.%d-%H.%M")`    
 
-### date    
+## date    
 
 La commande `date` renvoie la date courante.    
 
@@ -169,7 +167,7 @@ $ date "+%d/%m/%Y %Hh%M"
 
 On peut récupérer la date de dernière modification d'un fichier avec l'option `-r`.    
 
-### dpkg    
+## dpkg    
 
 Installer un paquet .deb    
 
@@ -186,7 +184,7 @@ apt-cache showpkg <paquet>
 
 `dpkg-query -L <paquet>`    
 
-### du    
+## du    
 
 Afficher la taille d'un dossier    
 
@@ -201,7 +199,7 @@ Afficher la taille totale d'un ensemble de fichier (en fonction d'un motif de re
 
 `du -csh <motif>`    
 
-### file    
+## file    
 
 Affiche le type d'un fichier    
 
@@ -210,13 +208,13 @@ file /tmp
 /tmp: sticky, directory  
 ```  
 
-### find    
+## find    
 
 Chercher un fichier    
 
 `find <chemin> -name <fichier> -perm <permision>`     
 
-#### Options possibles :    
+### Options possibles :    
 
 `!` : Pour la négation *(ex : ! -user root)*    
 `a` : Pour "et"    
@@ -304,7 +302,7 @@ Chercher un fichier
 `y` : Année "aa"    
 `Y` : Année "aaaa"    
 
-#### Exemple :    
+### Exemple :    
 
 `find /var/log -type f -name "*fichier*" -perm 755 -exec grep -iHn libpng {} \; 2> /dev/null`    
 
@@ -321,14 +319,14 @@ Chercher un fichier
 `2>` : envoie les erreurs dans    
 `/dev/null` : le néant    
 
-### fsck    
+## fsck    
 
 Outil de contrôle d'intégrité et de réparation    
 
 `fsck <partition>` : Réparer le système de fichier      
 `fsck -y <partition>` : Répond "Oui" à toutes les questions      
 
-### gcc    
+## gcc    
 
 Compiler des sources en C    
 
@@ -336,7 +334,7 @@ Compiler des sources en C
 `-Wall` : Active certaines alertes    
 `-o` : fichier de sortie    
 
-### grep    
+## grep    
 
 Recherche un motif dans un fichier    
 
@@ -346,7 +344,7 @@ Recherche de plusieurs motifs dans un fichier
 
 `grep -E "<motif1>|<motif2>" <fichier>`    
 
-### groff    
+## groff    
 
 Permet de mettre au format une page de manuel    
 
@@ -354,19 +352,19 @@ Permet de mettre au format une page de manuel
 `-Tascii` : Précise que le format doit être de type ASCII    
 `-Tps` : Précise que le format doit être de type PostScript    
 
-### groups    
+## groups    
 
 Afficher les groupes d'un utilisateur    
 
 `groups <utilisateur>`    
 
-### ip    
+## ip    
 
 Informations réseau    
 
 `ip a` : Afficher toutes les informations    
 
-### locate    
+## locate    
 
 Rechercher un fichier    
 
@@ -375,23 +373,23 @@ Rechercher un fichier
 *<u>Avantage :</u> Rapide*    
 *<u>Inconvénient :</u> Ne trouve pas un fichier récent. locate effectue la recherche dans une base de donnée. Il est possible de la mettre à jour avec la commande updatedb*    
 
-### ls    
+## ls    
 
 Permet de lister le contenu d'un dossier    
 
 `-R` : affiche les fichiers du répertoire courant et de ses sous-répertoires    
 `-i` : affiche les numéros d'inode    
 
-### man    
+## man    
 
 Manuel de commandes    
 
 `man <commande>` : Afficher le manuel    
 `<# > <commande>` : Afficher la page # de la commande <commande>    
 
-### man 7glob    
+## man 7glob    
 
-### mount     
+## mount     
 
 Action sur les partitions    
 
@@ -409,27 +407,27 @@ Action sur les partitions
 Pour monter automatiquement au démarrage :    
 
 ```console  
-#Récuperer l'UUID  
+Récuperer l'UUID  
 sudo blkid    
-#Modifier le fichier fstab  
+Modifier le fichier fstab  
 sudo vi /etc/fstab  
-#Ajouter la ligne (Partition ntfs)    
-#<partition> <point de montage> <type> <attributs>  
+Ajouter la ligne (Partition ntfs)    
+<partition> <point de montage> <type> <attributs>  
 /dev/sdb1 /mnt/ntfs/ ntfs nls-utf8,umask-0222,uid-1000,gid-1000,ro 0 0  
-#Tester avec   
+Tester avec   
 sudo mount -a  
 cd /mnt/ntfs  
 ```  
 
-### namei    
+## namei    
 
 Donne (entre autre) des infos sur le 1er bit des 10 bits en sortie de `ls -l`    
 
-### passwd    
+## passwd    
 
 `passwd <utilisateur>` : Changer le mot de passe d'un utilisateur       
 
-### rename    
+## rename    
 
 
 `rename 's/pattern/remplacement/' <fichier>` : Renomme le <fichier> en remplaçant le <pattern> par la chaîne de <remplacement>.      
@@ -437,13 +435,13 @@ Donne (entre autre) des infos sur le 1er bit des 10 bits en sortie de `ls -l`
 *Attention, cette commande doit être installée avant    
 L'option `-v` rend le `rename` verbeux.*    
 
-### scp    
+## scp    
 
 Permet de transferer un fichier par ssh    
 
 `scp -r -p <user>@<serveur_source>:<chemin_sur_serveur_source> <user>@<serveur_cible>:<chemin_sur_serveur_cible>`  
 
-### shutdown  
+## shutdown  
 
 La commande `shutdown` permet d'éteindre ou de redémarrer le PC    
 
@@ -457,7 +455,7 @@ Il est également possible de passer par la commande `systemctl` :
 `systemctl poweroff` : Pour arrêter    
 
 
-### stat    
+## stat    
 
 La commande `stat` renvoie des statistiques concernant un fichier.    
 
@@ -473,7 +471,7 @@ Change: 2020-03-08 16:43:09.214206300 +0100
 Birth: -    
 ```    
 
-### tar    
+## tar    
 
 Création d'archives non-compressées    
 
@@ -499,7 +497,7 @@ On peut le remplacer par `j` pour utiliser BZip2, et faire des archives .bz2
 `t` : Lister    
 `j` : bzip2    
 
-### tput    
+## tput    
 
 Positionne le curseur.    
 
@@ -507,18 +505,18 @@ Positionne le curseur.
 `tput sc` : Sauvegarde la position du curseur.    
 `tput rc` : Restaure la position du curseur précédemment sauvegardée.    
 
-### tree    
+## tree    
 
 `tree` : Afficher l'arborescence d'un dossier    
 `tree -DFfipgus` : Formattage du résultat    
 `tree -L 1` : Limiter le niveau à 1    
 `tree -I 'tests|logs_*'` : Exclure des dossiers  
 
-### umount    
+## umount    
 
 `umount <partition>` : Monter une partition      
 
-### uname    
+## uname    
 
 Affiche les informations du système    
 
@@ -527,9 +525,9 @@ Affiche les informations du système
 
 ---    
 
-## Commandes sur les chaînes    
+# Commandes sur les chaînes    
 
-### sed    
+## sed    
 
 `sed` est un éditeur non-intéractif.     
 *La commande `sed` a beaucoup d'utilité. Ce qui suit n'en est qu'un extrait*    
@@ -569,7 +567,7 @@ Il est possible d'écrire le modifier le fichier d'entrée avec l'option `-i` :
 
 `sed -i "s/chaine_a_remplacer/nouvelle_chaine/g <fichier>`    
 
-#### Substitution    
+### Substitution    
 
 `sed 's/<pattern1>/<pattern2/'` : Remplace le premier caractère trouvé de chaque ligne répondant au pattern1 par le pattern2    
 `sed 's/<pattern1>/<pattern2/g'` : Remplace tous les caractères trouvé de chaque ligne répondant au pattern1 par le pattern2    
@@ -579,7 +577,7 @@ Il est possible d'écrire le modifier le fichier d'entrée avec l'option `-i` :
 `sed 's/\.*\\U\1/'` : (Passe le pattern en Lowercase    
 
 
-#### Suppression  
+### Suppression  
 
 `sed ':a;N;$!ba;s/\n/ /g' <fichier>` : Suppression des retour à la ligne    
 `sed '1~2d'` : Suppression de la première ligne, puis toutes les deux lignes jusqu'à la fin. Lignes impaires    
@@ -589,13 +587,13 @@ Il est possible d'écrire le modifier le fichier d'entrée avec l'option `-i` :
 `sed '/pattern/d'` : Suppression des lignes contenant le pattern    
 `sed '/pattern/!d'` : Suppression des lignes ne contenant pas le pattern    
 
-#### Transposition    
+### Transposition    
 
 Très utile pour enlever des caractères accentués par exemple :  
 
 `sed 'y/àâéèêëîïôöùûü/aaeeeeiioouuu/'` : Remplace à par a, â par a, etc...    
 
-### awk    
+## awk    
 
 `awk -F: '{print($1 "\n")}' <fichier>` : Affiche la première colonne d'un fichier      
 
@@ -605,15 +603,15 @@ Très utile pour enlever des caractères accentués par exemple :
 
 `echo "Test" | awk '{print tolower($0)}'` : Change la casse en minuscule    
 
-## Commandes sur les images    
+# Commandes sur les images    
 
 **Le paquet *`imagemagick`* doit être installé.**    
 
-### identify    
+## identify    
 
 `identify <image>` : Retourne des infos concernant l'image.    
 
-### convert    
+## convert    
 
 Permet de modifier des images, selon plusieurs options.    
 
@@ -634,16 +632,16 @@ Permet de modifier des images, selon plusieurs options.
 `convert <fic_src> -crop <largeur_finale>x<hauteur_finale>+<pox_x>+<pos_y> <fic_sortie>`    
 exemple : `convert 01.png -crop 1000x500+550+350 croped-01.png` va créé un fichier croped-01.png en partant de l'image 01.png, d'une largeur de 1000px, d'une hauteur de 500px, en partant de la position 550 depuis la gauche de l'image d'origine, et de la position 350 depuis le haut de l'image d'origine.    
 
-## Opérations    
+# Opérations    
 
-### Exponentielle     
+## Exponentielle     
 
 Il faut utiliser la commande `let`    
 
 	>>$ let "e=2**3"; echo $e    
 	8    
 
-### Modulo     
+## Modulo     
 
 Il faut utiliser la commande `expr` ou la commande `let`    
 
@@ -652,34 +650,34 @@ Il faut utiliser la commande `expr` ou la commande `let`
 	$ let "e=5%3";echo $e    
 	2    
 
-## Boucles    
+# Boucles    
 
 Syntaxe :    
 
 `for i in ...;do <actions>;done`    
 `for i in {1..10};do echo $i;done`    
 
-## Conditions    
+# Conditions    
 
 `if [ <variable> <opérateur> <référence> ];then <actions>;else <action>;fi` : Si alors sinon    
 `if [[ <variable> <opérateur> <RegEx> ]];then ...` : RegEx    
 
-## Tableaux    
+# Tableaux    
 
-### Déclaration    
+## Déclaration    
 
 `declare -a <nom_tableau>` : Pour créer un tableau indicé    
 `declare -A <nom_tableau>` : Pour créer un tableau associatif    
 
-### Ajouter une entrée    
+## Ajouter une entrée    
 
 `<nom_tableau>+=("<entrée>")`    
 
-### Déclarer et insérer des entrées    
+## Déclarer et insérer des entrées    
 
 `<nom_tableau>=("<entrée_1>" "<entrée_2>" ...)`    
 
-### Lectures tableaux    
+## Lectures tableaux    
 
 `echo ${<tableau>[n]}`  : Renvoie l'entrée ayant pour indice `n`    
 `echo ${<tableau>[@]}`  : Renvoie les entrées du tableau    
@@ -687,17 +685,17 @@ Syntaxe :
 `echo ${#<tableau>[@]}` : Renvoie le nombre d'entrée dans le tableau    
 `echo ${<tableau>[-n]}` : Renvoie l'entrée `n` en partant du dernier    
 
-### Récupérer la valeur la plus grande    
+## Récupérer la valeur la plus grande    
 ```console  
 IFS=$'\n'  
 val=`echo "${<tableau>[*]}" | sort -nr | head -1`    
 ```  
 
-### Supprimer un élément du tableau    
+## Supprimer un élément du tableau    
 
 `unset tableau[n]` : Supprime l'indice/entrée `n`    
 
-### Supprimer un tableau    
+## Supprimer un tableau    
 
 `unset <tableau>`    
 `unset <tableau>[@]`    
