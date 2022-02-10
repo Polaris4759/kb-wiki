@@ -1,6 +1,6 @@
 #  Commandes console    
 
-## Commandes particulières et autres tips    
+## Commandes particulières et autres astuces    
 
 ### $?    
 
@@ -10,7 +10,7 @@
 
 `$_` est une variable contenant le dernier argument de la commande précédente    
 
-#### Exemple :    
+> #### Exemple :    
 `mkdir dossier && cd $_` : crée le répertoire "dossier" et s'y déplace    
 
 ### Modifier une partie de la dernière commande    
