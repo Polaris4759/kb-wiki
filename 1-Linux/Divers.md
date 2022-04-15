@@ -9,7 +9,7 @@
 >> *Dans le fichier `.bashrc` il est possible de rajouter des alias.    
 Par exemple, après avoir rajouté la ligne `alias ll='ls -l'`, il suffit de lancer la commande ll pour faire ls -l    
 Une bonne pratique est de mettre les alias dans un fichier `.bash_aliases` séparé, sourcé dans le `.bashrc`    
-Attention, après avoir modifier le fichier `.bashrc`, il faut le sourcer.*    
+Attention, après avoir modifié le fichier `.bashrc`, il faut le sourcer.*    
     
 ## Sourcer un fichier    
     
