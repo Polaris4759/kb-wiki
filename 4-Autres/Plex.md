@@ -10,15 +10,15 @@ Sur l'application web Plex, ouvrir les informations d'un élément, et cliquer s
 
 ### Lister les playlists et récupérer l'identifiant de la playlist à extraire  
 Se rendre sur l'URL suivante, en remplaçant `X-Plex-Token` par le token récupéré juste avant :  
-http://plex:32400/playlists?X-Plex-Token=`X-Plex-Token`  
+http://plex:32400/playlists?X-Plex-Token=X-Plex-Token  
 
 Un XML va s'afficher, une ligne par playlist, commençant ainsi :  
 `<Playlist ratingKey="14399" key="[...]`  
 Ici, dans ratingKey, on retrouve l'identifiant **14399**  
 
 ### Afficher un XML contenant toutes les informations de la playlist  
-Se rendre sur l'URL suivante, en remplaçant <X-Plex-Token> et <ID-playlist> : 
-http://plex:32400/playlists/<ID-playlist>/items?X-Plex-Token=<X-Plex-Token>  
+Se rendre sur l'URL suivante, en remplaçant `X-Plex-Token` et `ID-PLAYLIST` : 
+http://plex:32400/playlists/ID-PLAYLIST/items?X-Plex-Token=X-Plex-Token  
 
 ### Récupérer une information particulière  
 
