@@ -29,4 +29,3 @@ Après avoir copié/collé le texte dans un fichier accessible avec un terminal 
 
 #### Récupérer le nom de fichier  
 `cat playlist_2 | sed 's/videoProfile//g' | sed 's/audioProfile//g' | sed -E 's/file="(.*)/\nfile=\1/g' | sed 's/"/\n"/g' | grep -E "^file" | sed 's/file=//g' | sort > playlist_2TMP`
-
