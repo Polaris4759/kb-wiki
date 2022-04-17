@@ -504,6 +504,17 @@ On peut le remplacer par `j` pour utiliser BZip2, et faire des archives .bz2
 `t` : Lister  
 `j` : bzip2  
   
+## top
+
+Affiche la consommation des ressources  
+
+Pour trier par la consommation mémoire : `Shift-m`  
+
+La commande suivante récupère les process qui consomme le plus de mémoire, à 10 reprises, espacées de 5 secondes :  
+```console
+for i in {1..10};do date; top -b -o +%MEM | head -n 17|tail -11;sleep 5;done
+```
+
 ## tput  
   
 Positionne le curseur.  
