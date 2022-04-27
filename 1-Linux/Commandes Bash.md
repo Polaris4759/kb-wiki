@@ -284,7 +284,8 @@ Chercher un fichier
 `t` : Date de dernière modification  
 `a` : Date de dernier accès  
 `Ax` : Date de dernier accès, avec "x" pouvant prendre les valeurs ci-dessous  
-`Cx` : Date de dernière modification, avec "x" pouvant prendre les valeurs ci-dessous  
+`Cx` : Date de dernier changement, avec "x" pouvant prendre les valeurs ci-dessous  
+`Tx` : Date de dernière modification, avec "x" pouvant prendre les valeurs ci-dessous  
   
 `H` : Heure (00..23)  
 `I` : Heure (01..12)  
