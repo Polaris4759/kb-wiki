@@ -555,6 +555,7 @@ Affiche les informations du système
   
 `sed -option adresse/pattern1/pattern2/flag fichier` : Remplacer le <pattern1> par le <pattern2>  
 `sed -option adresse:pattern1:pattern2:action fichier` : Si des `/` doivent être utilisé dans les chaines, on utilise d'autres caractères de séparations (par exemple `:` )  
+`sed -e "s/\b\(.\)/\u\1/g"` : Transforme la première lettre de chaque mot par en majuscule  
   
 **adresse**  
   
