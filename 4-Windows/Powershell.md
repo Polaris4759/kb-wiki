@@ -74,7 +74,7 @@ $a.CreationTime = (Get-Date)
   
 ```powershell  
 $a.LastWriteTime = $(Get-Date "27/06/2020 9:30 pm")  
-ou  
+# ou  
 $a.LastWriteTime = $(Get-Date "27/06/2020 21:30:20")  
 ```  
   
@@ -118,15 +118,12 @@ Get-ChildItem | Where-Object {$_.LastWriteTime -lt (Get-Date "26/06/2020")} | Fo
   
 ### For    
   
-> Syntaxe `For` :  
-  
 ```powershell  
 for ($i=0;$i -lt 10;$i++){  
     <action>  
 }  
 ```  
-
-> Syntaxe `foreach` : 
+### Foreach    
 
 ```powershell
 $file=Get-Content .\fichier.txt
