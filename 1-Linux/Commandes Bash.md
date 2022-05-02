@@ -7,6 +7,10 @@
 ## $_  
   
 `$_` est une variable contenant le dernier argument de la commande précédente  
+
+## !$  
+  
+`$!` est une variable contenant le dernier paramètre de la commande précédente  
   
 > #### Exemple :  
 > `mkdir dossier && cd $_` : crée le répertoire "dossier" et s'y déplace  
@@ -106,6 +110,7 @@ Affiche un calendrier
   
 `cal 07 1988` : Affiche le mois de juillet 1988  
   
+`cal -3` : Ressort 3 mois (1 avant, mois actuel, 1 après)  
 ## chgrp  
   
 Changer le groupe propriétaire  
@@ -173,6 +178,9 @@ $ date -r "Commandes Bash.md"
 jeu. 10 févr. 2022 22:40:48 CET  
 ```  
   
+date --date "40 days" : indique la date qu'il sera dans 40 jours
+date --date "40 days ago" : indique la date qu'il était il y a 40 jours
+
 ## dpkg  
   
 Installer un paquet .deb  
@@ -531,6 +539,9 @@ Positionne le curseur.
 `tree -L 1` : Limiter le niveau à 1  
 `tree -I 'tests|logs_*'` : Exclure des dossiers  
   
+## tty  
+Indique quel terminal est utilisé  
+
 ## umount  
   
 `umount <partition>` : Monter une partition  
