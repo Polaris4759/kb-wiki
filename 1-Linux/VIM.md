@@ -1,3 +1,32 @@
+# Paramétrage de l'éditeur | Options et .vimrc  
+
+Il est possible de paramétrer l'éditeur pendant qu'on l'utilise.  
+Une autre méthode est de créer un fichier .vimrc dans son home pour définir les paramètres par défaut.  
+
+## Options :  
+
+Dans l'éditeur, faire `:set ` suivi de l'option.  
+
+`showmode` : Affiche le mode dans lequel on se trouve  
+`nonumber` : Enlève les numéros de ligne  
+`number`   : Affiche les numéros de lignes  
+`ai` ou `autoindent` : Active l'auto-indentation  
+`nohlsearch` : Désactive le surlignement des correspondances lors de recherches  
+`ts=X` : Défini le nombre d'espace des tabulations (X étant le nombre d'espaces)  
+`expandtab` : Assure que les tabulations soient des espaces  
+`abbr <abbr> <texte>` : Défini une abréviation pour un texte plus long. Exemple : `abbr _sh #!/bin/bash`. En tapant `_sh ` dans vim, un Shebang bash apparaît.  
+`nmap <combinaison de touches> <opération>` : Exemple `nmap <C-N> :set invnumber<CR>` inverse les options `number`/`nonumber`  
+:setl noai nocin nosi inde=
+
+## Options sur le fichier  
+
+`:w` : Sauvegarder le fichier (write)
+`:q` : Quitter
+`:wq` : Sauvegarder et quitter
+`:x` : Sauvegarder et quitter
+`:q!` : Quitter sans enregistrer
+`:e!` : Effacer toutes les modifications jusqu'à la dernière version enregistré
+
 # Raccourcis    
 
 **Déplacements**    

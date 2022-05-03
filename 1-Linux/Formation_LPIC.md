@@ -129,6 +129,16 @@ $ cat ntp.conf | wc -l
 58
 $ sed '/^#/d ; /^$/d' ntp.conf | wc -l
 11
+
+
+$ function clean_file {
+> sed -i '/^#/d;/^$/d' $1
+> }
+$ clean_file ntp.conf
+$ cat ntp.conf | wc -l
+11
+
+
 ```
 
 # Les Liens  
