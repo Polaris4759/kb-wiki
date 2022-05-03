@@ -524,6 +524,14 @@ La commande suivante récupère les process qui consomme le plus de mémoire, à
 for i in {1..10};do date; top -b -o +%MEM | head -n 17|tail -11;sleep 5;done
 ```
 
+## touch  
+
+Par défaut, `touch` permet de modifier la date de modification d'un fichier pour le mettre à la date actuelle.  
+`touch` peut être utilisé pour créé un fichier vide. Tout comme `> fichier`.  
+
+`touch` permettant d'agir sur la date de modification d'un fichier, il est possible de définir la date de modification d'un fichier avec la commande suivante :  
+`touch -d '03 May 2022' fichier`  
+
 ## tput  
   
 Positionne le curseur.  
