@@ -196,7 +196,7 @@ total 8
 `>` = `1>` : Redirige la sortie de la commande précédente sans les erreurs dans le fichier indiqué après  
 `2>` : Redirige les erreurs de la commande précédente dans le fichier indiquée après  
 `&>` : Redirige toute la sortie vers le fichier indiqué après  
-`>>` : Ajout la sortie de la commande rpécédentes dans le fichier indiqué après  
+`>>` : Ajout la sortie de la commande précédentes dans le fichier indiqué après  
 
 ## noclobber  
 
@@ -215,3 +215,117 @@ $ date > file1
 $ date >| file1
 ```
 
+## Pipe nommées  
+
+`mkfifo mypipe` : créé un fichier de type p ("pipe")  
+
+Ce fichier est utilisable par un tty en sortie, puis par un autre en entrée.  
+Une fois le mypipe utilisé sur le deuxième tty, le process utilisé sur le premier tty est terminé.  
+
+## Archivage  
+
+### tar  
+
+`tar -cvf doc.tar /usr/share/doc` : Créé une archive tar  
+`tar --list --file=doc.tar` : Liste les fichiers de l'archive doc.tar  
+`tar -lf doc.tar` : Identique  
+`tar --extract --verbose --file=doc.tar` : Extrait l'archive  
+`tar -xvf doc.tar` : Identique  
+`tar --extract --verbose --file=doc.tar --directory=~` : Extrait l'archive vers le dossier `~`  
+
+Utilisation de tar pour des sauvegardes régulières :  
+
+```shell
+# Création d'un dossier de test
+$ mkdir test
+$ cd test
+# Création de fichiers de test
+$ touch file{1..3}
+$ ls
+file1 file2 file3
+$ cd ..
+# Création de l'archive d'origine
+$ tar -cvf my0.tar -g my.snar test
+# Modification du fichier file1
+$ echo "Hi" >> test/file1
+# Mise à jour de l'archive myx.tar
+$ tar -cvf my1.tar -g my.snar test
+# Suppression du fichier file2
+$ rm test/file2
+# Mise à jour de l'archive myx.tar
+$ tar -cvf my2.tar -g my.snar test
+# Suppression du dossier d'origine
+$ rm -rf test
+# Les commandes suivantes restaurent le dossier avec les modifications faites à chaque fois
+$ tar -xvf my0.tar -g /dev/null # Création du dossier test avec les 3 fichiers
+$ tar -xvf my1.tar -g /dev/null # Modification du fichier file1
+$ tar -xvf my2.tar -g /dev/null # Suppression du fichier file2
+```
+
+## gzip  
+
+`gzip <file>.tar` : Comprime le fichier .tar, créé un fichier .tar.gz et supprime le .tar  
+`gunzip <file>.tar.gz` : Décompresse le fichier .tar.gz, créé le fichier .tar, et supprime le .tar.gz  
+
+Faisable directement avec la commande `tar` :  
+`tar -cvzf <file>.tar.gz <file1> <file2> ...` : Création de l'archive  
+`tar -xvzf <file>.tar.gz <file1> <file2> ...` : Extraction de l'archive  
+
+## bzip2  
+
+`bzip2 <file>.tar` : Comme `gzip`, mais comprime davantage  
+`bunzip2 <file>.tar.bz2` : Comme `gunzip`, pour les fichiers .tar.bz2  
+
+Faisable directement avec la commande `tar` :  
+`tar -cvjf <file>.tar.bz2 <file1> <file2> ...` : Création de l'archive  
+`tar -xvjf <file>.tar.bz2 <file1> <file2> ...` : Extraction de l'archive  
+
+
+# dd 
+
+## Copier un dvd vers un fichier iso  
+
+```shell
+dd if=/dev/sr0 of=output.iso
+# if : Input
+# /dev/sr0 : Correspond au lecteur de disque 
+# of : Output
+```
+
+## Copier une partition vers un fichier img
+```shell
+sudo dd if=/dev/sda1 of=boot.img
+# if : Input
+# of : Output
+```
+
+## Copier un disque vers un fichier img
+
+Copie d'un seul bloc de 512 bytes pour l'exemple
+```shell
+dd if=/dev/sda of=sda.mbr count=1 bs=512
+# if : Input
+# of : Output
+# count : 1 block
+# bs : Block-size 512 bytes
+```
+
+## Effacer un disque    
+```shell
+dd if=/dev/zero of=/dev/sda count=1 bs=512
+# if : Input
+# of : Output
+# count : 1 block
+# bs : Block-size 512 bytes
+```
+
+Un `fdisk -l` n'affiche plus les partitions sda1 et sda2
+
+## Restaurer un disque    
+```shell
+dd if=sda.mbr of=/dev/sda
+# if : Input
+# of : Output
+```
+
+Un `fdisk -l` affiche à nouveau les partitions sda1 et sda2
