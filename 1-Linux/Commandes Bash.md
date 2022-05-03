@@ -6,19 +6,51 @@
   
 ## $_  
   
-`$_` est une variable contenant le dernier argument de la commande précédente  
+`$_` est une variable contenant le dernier argument passé à la commande lors de la commande précédente  
 
-## !$  
+#### Exemple :  
+
+`mkdir dossier && cd $_` : crée le répertoire "dossier" et s'y déplace  
+
+Ou encore, pour comprendre la différence avec la commande `!$` ci-dessous : 
+
+```shell
+$ echo "hello" > /tmp/a.txt
+$ echo $_
+hello
+# "hello" est le dernier argument passé à la commande "echo"  
+```
+
+## !$
   
-`!$` est une variable contenant le dernier paramètre de la commande précédente  
+`!$` est une variable contenant le dernier paramètre de la commande précédente, en prenant la commande dans son ensemble  
+
+Exemple : 
+
+```shell
+$ echo "hello" > /tmp/a.txt
+$ echo "!$"
+echo "/tmp/a.txt"
+/tmp/a.txt
+```
 
 ## !x  
 
 `!x` : "x" étant une lettre. Le shell va chercher la dernière commande commençant par "x" et lancer la commande  
-  
-> #### Exemple :  
-> `mkdir dossier && cd $_` : crée le répertoire "dossier" et s'y déplace  
-  
+
+## !n  
+
+`!n` : "n" étant le numéro de la commande d'après l'inventaire présent dans `history`  
+
+## !!  
+
+`!!` : Représente la dernière commande passée  
+
+Exemple : 
+```shell
+
+```
+
 ## Modifier une partie de la dernière commande  
   
 `^ancien_texte^nouveau_texte`  
@@ -157,7 +189,18 @@ En combinant les commandes `ls`, `xargs`, et `cp`, il est possible de copier une
 *exemple*  
   
 `ls *.sh | xargs -I % cp % save/%_$(date "+%Y.%m.%d-%H.%M")`  
-  
+
+## cpio 
+
+`find -name '*.pdf' | cpio -o > /tmp/pdf.cpio` : Créé une archive .cpio  
+`cpio -id < /tmp/pdf.cpio` : Extrait l'archive  
+
+```shell
+cpio -id < <fichier>.cpio
+# -i input
+# -d créé les dossiers indiqués dans l'archive
+```
+
 ## cut  
 
 Découpe une ligne par exemple  
@@ -535,6 +578,35 @@ On peut le remplacer par `j` pour utiliser BZip2, et faire des archives .bz2
 `t` : Lister  
 `j` : bzip2  
   
+## tee  
+
+Permet d'avoir la sortie d'une commande redirigé vers le terminal, mais aussi vers un fichier  
+
+Exemple : 
+`ls | tee liste.txt` : Affiche le contenu du dossier et ajoute également la liste des fichiers dans le fichier liste.txt  
+
+Permet également d'ajouter du texte dans un fichier nécessitant des permissions plus élevées  
+Exemple : 
+```shell
+echo '127.0.0.1 stan' | sudo tee -a /etc/hosts
+# echo ne nécessite pas de permission  
+# tee précédé de sudo pour exécuté tee avec les droits root
+# -a pour 'append' afin de ne pas écraser le fichier
+```
+
+## time  
+
+Affiche le temps utilisé par une commande  
+
+```shell
+$ time ls
+file1  file2  file3
+
+real    0m0.003s
+user    0m0.001s
+sys     0m0.001s
+```
+
 ## top
 
 Affiche la consommation des ressources  
