@@ -3,7 +3,7 @@
 Il est possible de paramétrer l'éditeur pendant qu'on l'utilise.  
 Une autre méthode est de créer un fichier .vimrc dans son home pour définir les paramètres par défaut.  
 
-## Options :  
+## Options  
 
 Dans l'éditeur, faire `:set ` suivi de l'option.  
 
