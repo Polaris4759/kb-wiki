@@ -20,12 +20,12 @@ Dans l'éditeur, faire `:set ` suivi de l'option.
 
 ## Options sur le fichier  
 
-`:w` : Sauvegarder le fichier (write)
-`:q` : Quitter
-`:wq` : Sauvegarder et quitter
-`:x` : Sauvegarder et quitter
-`:q!` : Quitter sans enregistrer
-`:e!` : Effacer toutes les modifications jusqu'à la dernière version enregistré
+`:w` : Sauvegarder le fichier (write)  
+`:q` : Quitter  
+`:wq` : Sauvegarder et quitter  
+`:x` : Sauvegarder et quitter  
+`:q!` : Quitter sans enregistrer  
+`:e!` : Effacer toutes les modifications jusqu'à la dernière version enregistré  
 
 # Raccourcis    
 
