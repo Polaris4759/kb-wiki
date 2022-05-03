@@ -190,3 +190,28 @@ total 8
 # f3 affiche 1 hard link
 # L'inode de f3 est différent des inodes de f1 et f2
 ```
+
+# Les redirections  
+
+`>` = `1>` : Redirige la sortie de la commande précédente sans les erreurs dans le fichier indiqué après  
+`2>` : Redirige les erreurs de la commande précédente dans le fichier indiquée après  
+`&>` : Redirige toute la sortie vers le fichier indiqué après  
+`>>` : Ajout la sortie de la commande rpécédentes dans le fichier indiqué après  
+
+## noclobber  
+
+Evite d'écraser un fichier.  
+
+`set -o` :  
+`set -o noclobber` : Active l'option `noclobber`  
+`set +o noclobber` : Désactive l'option `noclobber`  
+
+```shell
+# Avec l'option noclobber activée 
+$ date > file1
+$ date > file1
+-bash: file1 : impossible d'écraser le fichier existant
+# Pour forcer l'écriture dans le fichier
+$ date >| file1
+```
+

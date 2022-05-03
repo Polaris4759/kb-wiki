@@ -10,7 +10,11 @@
 
 ## !$  
   
-`$!` est une variable contenant le dernier paramètre de la commande précédente  
+`!$` est une variable contenant le dernier paramètre de la commande précédente  
+
+## !x  
+
+`!x` : "x" étant une lettre. Le shell va chercher la dernière commande commençant par "x" et lancer la commande  
   
 > #### Exemple :  
 > `mkdir dossier && cd $_` : crée le répertoire "dossier" et s'y déplace  
@@ -154,6 +158,24 @@ En combinant les commandes `ls`, `xargs`, et `cp`, il est possible de copier une
   
 `ls *.sh | xargs -I % cp % save/%_$(date "+%Y.%m.%d-%H.%M")`  
   
+## cut  
+
+Découpe une ligne par exemple  
+
+Exemple : 
+```shell
+$ cut -d: -f7 /etc/passwd | sort -u
+/bin/bash
+/bin/false
+/bin/sync
+/sbin/halt
+/sbin/nologin
+/sbin/shutdown
+
+# -d : Délimiteur. Ici ":"
+# -f : Field, le champ à afficher. Ici, la 7ème colonne.
+```
+
 ## date  
   
 La commande `date` renvoie la date courante.  
