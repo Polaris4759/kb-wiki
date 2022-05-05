@@ -48,6 +48,18 @@ Get-ChildItem | Where-Object {$_.LastWriteTime -lt (Get-Date "26/06/2020")
 ```console  
 Get-ChildItem | Where-Object {$_.Length -gt 50KB}  
 ```  
+
+### Rechercher un dossier ou un fichier (Find)  
+
+#### Dossier  
+```powershell
+Get-ChildItem <path> -recurse | Where-Object {$_.PSIsContainer -eq $true -and $_.Name -match "keyword"}  
+```
+
+#### Fichier  
+```powershell
+Get-ChildItem <path> -recurse | Where-Object {$_.Name -match "keyword"}  
+```
   
 ### Supprimer les fichiers retournés    
   
@@ -60,7 +72,7 @@ Get-ChildItem | Where-Object {$_.Length -gt 50KB}
 ```console  
 Get-ChildItem | Where-Object {$_.LastWriteTime -lt (Get-Date "26/06/2020")} | ForEach-Object{$_.LastWriteTime=$(Get-Date "27/06/2020 9:30 pm")}  
 ```  
-  
+
 ## Boucle    
   
 ### For    
@@ -72,3 +84,4 @@ for ($i=0;$i -lt 10;$i++){
     <action>  
 }  
 ```  
+
