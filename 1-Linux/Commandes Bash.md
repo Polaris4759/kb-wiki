@@ -6,11 +6,51 @@
   
 ## $_  
   
-`$_` est une variable contenant le dernier argument de la commande précédente  
+`$_` est une variable contenant le dernier argument passé à la commande lors de la commande précédente  
+
+#### Exemple :  
+
+`mkdir dossier && cd $_` : crée le répertoire "dossier" et s'y déplace  
+
+Ou encore, pour comprendre la différence avec la commande `!$` ci-dessous : 
+
+```shell
+$ echo "hello" > /tmp/a.txt
+$ echo $_
+hello
+# "hello" est le dernier argument passé à la commande "echo"  
+```
+
+## !$
   
-> #### Exemple :  
-> `mkdir dossier && cd $_` : crée le répertoire "dossier" et s'y déplace  
-  
+`!$` est une variable contenant le dernier paramètre de la commande précédente, en prenant la commande dans son ensemble  
+
+Exemple : 
+
+```shell
+$ echo "hello" > /tmp/a.txt
+$ echo "!$"
+echo "/tmp/a.txt"
+/tmp/a.txt
+```
+
+## !x  
+
+`!x` : "x" étant une lettre. Le shell va chercher la dernière commande commençant par "x" et lancer la commande  
+
+## !n  
+
+`!n` : "n" étant le numéro de la commande d'après l'inventaire présent dans `history`  
+
+## !!  
+
+`!!` : Représente la dernière commande passée  
+
+Exemple : 
+```shell
+
+```
+
 ## Modifier une partie de la dernière commande  
   
 `^ancien_texte^nouveau_texte`  
@@ -106,6 +146,7 @@ Affiche un calendrier
   
 `cal 07 1988` : Affiche le mois de juillet 1988  
   
+`cal -3` : Ressort 3 mois (1 avant, mois actuel, 1 après)  
 ## chgrp  
   
 Changer le groupe propriétaire  
@@ -148,7 +189,36 @@ En combinant les commandes `ls`, `xargs`, et `cp`, il est possible de copier une
 *exemple*  
   
 `ls *.sh | xargs -I % cp % save/%_$(date "+%Y.%m.%d-%H.%M")`  
-  
+
+## cpio 
+
+`find -name '*.pdf' | cpio -o > /tmp/pdf.cpio` : Créé une archive .cpio  
+`cpio -id < /tmp/pdf.cpio` : Extrait l'archive  
+
+```shell
+cpio -id < <fichier>.cpio
+# -i input
+# -d créé les dossiers indiqués dans l'archive
+```
+
+## cut  
+
+Découpe une ligne par exemple  
+
+Exemple : 
+```shell
+$ cut -d: -f7 /etc/passwd | sort -u
+/bin/bash
+/bin/false
+/bin/sync
+/sbin/halt
+/sbin/nologin
+/sbin/shutdown
+
+# -d : Délimiteur. Ici ":"
+# -f : Field, le champ à afficher. Ici, la 7ème colonne.
+```
+
 ## date  
   
 La commande `date` renvoie la date courante.  
@@ -173,6 +243,9 @@ $ date -r "Commandes Bash.md"
 jeu. 10 févr. 2022 22:40:48 CET  
 ```  
   
+date --date "40 days" : indique la date qu'il sera dans 40 jours
+date --date "40 days ago" : indique la date qu'il était il y a 40 jours
+
 ## dpkg  
   
 Installer un paquet .deb  
@@ -284,7 +357,8 @@ Chercher un fichier
 `t` : Date de dernière modification  
 `a` : Date de dernier accès  
 `Ax` : Date de dernier accès, avec "x" pouvant prendre les valeurs ci-dessous  
-`Cx` : Date de dernière modification, avec "x" pouvant prendre les valeurs ci-dessous  
+`Cx` : Date de dernier changement, avec "x" pouvant prendre les valeurs ci-dessous  
+`Tx` : Date de dernière modification, avec "x" pouvant prendre les valeurs ci-dessous  
   
 `H` : Heure (00..23)  
 `I` : Heure (01..12)  
@@ -504,6 +578,54 @@ On peut le remplacer par `j` pour utiliser BZip2, et faire des archives .bz2
 `t` : Lister  
 `j` : bzip2  
   
+## tee  
+
+Permet d'avoir la sortie d'une commande redirigé vers le terminal, mais aussi vers un fichier  
+
+Exemple : 
+`ls | tee liste.txt` : Affiche le contenu du dossier et ajoute également la liste des fichiers dans le fichier liste.txt  
+
+Permet également d'ajouter du texte dans un fichier nécessitant des permissions plus élevées  
+Exemple : 
+```shell
+echo '127.0.0.1 stan' | sudo tee -a /etc/hosts
+# echo ne nécessite pas de permission  
+# tee précédé de sudo pour exécuté tee avec les droits root
+# -a pour 'append' afin de ne pas écraser le fichier
+```
+
+## time  
+
+Affiche le temps utilisé par une commande  
+
+```shell
+$ time ls
+file1  file2  file3
+
+real    0m0.003s
+user    0m0.001s
+sys     0m0.001s
+```
+
+## top
+
+Affiche la consommation des ressources  
+
+Pour trier par la consommation mémoire : `Shift-m`  
+
+La commande suivante récupère les process qui consomme le plus de mémoire, à 10 reprises, espacées de 5 secondes :  
+```console
+for i in {1..10};do date; top -b -o +%MEM | head -n 17|tail -11;sleep 5;done
+```
+
+## touch  
+
+Par défaut, `touch` permet de modifier la date de modification d'un fichier pour le mettre à la date actuelle.  
+`touch` peut être utilisé pour créé un fichier vide. Tout comme `> fichier`.  
+
+`touch` permettant d'agir sur la date de modification d'un fichier, il est possible de définir la date de modification d'un fichier avec la commande suivante :  
+`touch -d '03 May 2022' fichier`  
+
 ## tput  
   
 Positionne le curseur.  
@@ -519,6 +641,9 @@ Positionne le curseur.
 `tree -L 1` : Limiter le niveau à 1  
 `tree -I 'tests|logs_*'` : Exclure des dossiers  
   
+## tty  
+Indique quel terminal est utilisé  
+
 ## umount  
   
 `umount <partition>` : Monter une partition  
@@ -543,6 +668,7 @@ Affiche les informations du système
   
 `sed -option adresse/pattern1/pattern2/flag fichier` : Remplacer le <pattern1> par le <pattern2>  
 `sed -option adresse:pattern1:pattern2:action fichier` : Si des `/` doivent être utilisé dans les chaines, on utilise d'autres caractères de séparations (par exemple `:` )  
+`sed -e "s/\b\(.\)/\u\1/g"` : Transforme la première lettre de chaque mot par en majuscule  
   
 **adresse**  
   
