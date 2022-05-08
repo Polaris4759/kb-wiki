@@ -368,6 +368,7 @@ Chercher un fichier
 `p` : AM ou PM  
 `r` : Heure complète, AM ou PM  
 `S` : Seconde  
+`%.2TS` : Seconde, limité à 2 digits  
 `T` : Heure complète, 24H  
 `Z` : Fuseau horaire  
 `b` : Mois abrégé  
