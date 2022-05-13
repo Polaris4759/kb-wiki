@@ -67,3 +67,43 @@ telnet towel.blinkenlights.nl
 `powercfg /requestsoverride` : Liste ce qui a été exclu par l'utilisateur    
 `powercfg -requestsoverride DRIVER "<nom_du_driver>" awaymode display system` : Ajoute le driver <nom_du_driver> à la liste de ce qui ne doit pas maintenir eveillé le PC    
 
+## Les variables d'environnement  
+
+Les variables d'environnement peuvent être gérées via Invite de commande, Powershell, ou interface graphique.  
+
+Via l'interface graphique, tout se passe ici :  
+ - Windows + R  
+ - sysdm.cpl  
+ - Avancé  
+ - Variable d'environnement  
+
+### Lister les variables d'environnement  
+
+`Invite de commande`  
+```bat
+set
+```
+
+`Powershell`  
+```powershell
+Get-ChildItem Env:
+```
+
+### Vérifier une variable d'environnement  
+
+`Invite de commande`  
+```bat
+echo %[variable]%
+```
+
+```powershell
+echo $Env:[variable]
+```
+
+### Définir une variable d'environnement  
+
+`Invite de commande`  
+```bat
+setx [variable_name] "[variable_value]"
+```
+
