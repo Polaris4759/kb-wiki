@@ -37,7 +37,21 @@ Get-Content .\fichier.txt | Select -First 1
 # Remplace toto par titi dans le fichier
 (Get-Content -path .\<chemin>\fichier.txt -Raw) -replace 'toto','titi' | Set-Content -Path .\<chemin>\fichier.txt
 ```
-  
+
+## Chercher un dossier ou un fichier (équivalent du find)  
+
+### Dossier  
+
+```powershell
+Get-ChildItem <path> -recurse | Where-Object {$_.PSIsContainer -eq $true -and $_.Name -match "keyword"}  
+```
+
+### Fichier  
+
+```powershell
+Get-ChildItem <path> -recurse | Where-Object {$_.Name -match "keyword"}  
+```
+
 ## Remplacer une chaine dans une variable  
 ```powershell
 $var2=($var1 -replace 'chaine1','chaine2')
@@ -80,7 +94,7 @@ $a.LastWriteTime = $(Get-Date "27/06/2020 21:30:20")
   
 ## Lister des fichiers selon des critères    
   
-### Chercher dans plusieurs emplacmeent    
+### Chercher dans plusieurs emplacement    
   
 ```powershell  
 Get-ChildItem -Path Path1, Path2  
