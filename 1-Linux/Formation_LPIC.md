@@ -405,7 +405,7 @@ Host server1
 
 Host server2
   HostName 192.168.1.51
-  User rooot
+  User root
 ```
 
 ### Utilisation de clé d'authentification  
@@ -477,4 +477,87 @@ Commandes en `screen` :
 Une fois la commande `screen`, `Ctrl+a :` pour ouvrir le prompt.  
 Il est possible d'envoyer des commandes de façon simultanée à tous les terminaux avec la commande suivante :  
 `:at "#" stuff "<commande>^M"` (^M = Ctrl+M = Retour à la ligne)  
+
+## Le prompt (PS1)  
+
+### Ajouter le nom long dans le PS1  
+
+```shell
+sudo vim /etc/bashrc
+#Remplacer le \W par un \w
+```
+
+## Gestion utilisateurs  
+
+### Template par défaut  
+
+`/etc/skel`  
+
+### Commande id  
+
+La commande id montre les informations d'un utilisateur.  
+
+`id` : Montre les informations de l'utilisateur courant.  
+`id <user>` : Montre les informations de l'utilisateur <user>.  
+`id -g` : Montre le groupe primaire de l'utilisateur courant.  
+`id -G` : Montre les groupes de l'utilisateur courant (ID de groupes).  
+`id -Gn` : Montre les groupes de l'utilsateur courant (Noms de groupes).  
+
+### Création utilisateur locale  
+
+```shell
+sudo useradd -m user1
+# -m pour ajouter un dossier user1 dans le /home - Actif par défaut, inutile de l'ajouter
+```
+
+```shell
+sudo useradd user2 -N user2 -g users -G adm -s /bin/sh
+# -N pour no-user-group
+# -g pour Primary Group ID
+# -G pour Secondary Group
+# -s pour spécifier le shell
+```
+
+### Gestion des mots de passe  
+
+`sudo passwd user1` : Permet de modifier le mot de passe de user1.  
+`echo 'user2:Password2' | sudo chpasswd` : Permet de modifier le mot de passe de user2.  
+`echo Password3 | sudo passwd user3 --stdin` : Permet de modifier le mot de passe de user3.  
+
+`/etc/shadow` : Fichier contenant les mots de passe  
+
+`chage -l user1` : Affiche les informations de date conernant le mot de passe de l'utilisateur user1  
+
+Par défaut, `/etc/passwd` affiche un `x` dans la deuxième colonne des utilisateurs lorsque leur mot de passe est stocké dans le fichier `/etc/shadow`.  
+Pour afficher le mot de passe dans `/etc/passwd`, il suffit de passer la commande `sudo pwunconv`.  
+Pour remettre l'affichage par défaut, `sudo pwconv`.  
+
+`sudo chage -M 40 user1` : Change la durée en jour entre chaque changement de mot de passe  
+
+`sudo passwd -l user1` : Vérouille le mot de passe de user1  
+`sudo passwd -u user1` : Dévérouille le mot de passe de user1  
+
+### Paramètres par défaut des utilisateurs  
+
+`/etc/login.defs` : Fichier contenant les paramétrages par défaut  
+
+`sudo useradd -D` : Affiche des paramètres par défaut  
+`sudo useradd -Ds` : -s pour shell. Permet de définir le shell par défaut.  
+
+Ces paramétrages sont stockés dans `/etc/default/useradd`  
+
+### Modification sur un compte utilisateur  
+
+`sudo usermod -c "User One" user1` : Modifie le commentaire pour l'utilisateur user1 (Visible dans le fichier `/etc/passwd` par exemple )  
+
+`sudo chsh -s /bin/sh user1` : Change le shell pour user1 en Bourne Shell  
+`sudo usermod -s /bin/bash user1` : Change le shell pour user1 en Bourne Again Shell  
+
+### Suppression d'un compte utilisateur  
+
+`sudo userdel -r user1` : Supprime le compte. `-r` pour supprimer le home directory  
+
+Sans le `-r`, le compte est supprimé, mais tous les fichiers/dossiers appartenant à l'utilisateur sont toujours là.  
+On peut passer la commande suivante pour supprimer son home :   
+`sudo find /home -uid 1002 -delete`  
 

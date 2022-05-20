@@ -406,6 +406,11 @@ Outil de contrôle d'intégrité et de réparation
 `fsck <partition>` : Réparer le système de fichier  
 `fsck -y <partition>` : Répond "Oui" à toutes les questions  
   
+## fuser  
+
+`fuser -cu <path>` : Chercher les process utilisant le path  
+`fuser 80/tcp` : Chercher les process utilisant le port 80  
+
 ## gcc  
   
 Compiler des sources en C  
@@ -462,6 +467,10 @@ Permet de lister le contenu d'un dossier
 `-t` : tri l'affichage chronoliguement  
 `-r` : inverse le tri  
   
+## lsof  
+
+`lsof -i :80` : Affiche les process utilisant le port 80  
+
 ## man  
   
 Manuel de commandes  
@@ -505,6 +514,10 @@ cd /mnt/ntfs
   
 Donne (entre autre) des infos sur le 1er bit des 10 bits en sortie de `ls -l`  
   
+## netstat  
+
+`netstat -lntp | grep -w ':80'` : Voir les process utilisé par le port 80  
+
 ## passwd  
   
 `passwd <utilisateur>` : Changer le mot de passe d'un utilisateur  

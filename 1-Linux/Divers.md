@@ -113,6 +113,9 @@ Attention, après avoir modifié le fichier `.bashrc`, il faut le sourcer.*
     
 >`tree /dev/disk/`    
     
+
+
+    
 ## Fun commands    
     
 Avec un `apt install` :    
