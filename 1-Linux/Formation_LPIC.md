@@ -280,8 +280,34 @@ Faisable directement avec la commande `tar` :
 `tar -cvjf <file>.tar.bz2 <file1> <file2> ...` : Création de l'archive  
 `tar -xvjf <file>.tar.bz2 <file1> <file2> ...` : Extraction de l'archive  
 
+## cpio  
 
-# dd 
+```shell
+#Création d'une archive cpio
+find . | cpio -o > /tmp/archive.cpio
+#Extraction de l'archive (-i) en créant les dossiers requis dans l'archive (-d)
+cpio -id < /tmp/archive.cpio
+```
+
+## dd (Disk duplicator)  
+
+Après avoir monté un disque :  
+
+```shell
+#dd : Disk duplicator
+#if : input file
+#of : output file
+dd if=/dev/sr0 of=netinstall.iso
+#Créé un fichier img avec l'intégralité de la partition bootable
+dd if=/dev/sda1 of=boot.img
+#Faire un wipe de la machine 
+##Faire une sauvegarde
+dd if=/dev/sda of=sda.mbr count=1 bs=512
+##Wipe de la partition
+dd if=/dev/zero of=/dev/sda count=1 bs=512
+##Restauration
+dd if=sda.mbr of=/dev/sda
+```
 
 ## Copier un dvd vers un fichier iso  
 
@@ -329,3 +355,126 @@ dd if=sda.mbr of=/dev/sda
 ```
 
 Un `fdisk -l` affiche à nouveau les partitions sda1 et sda2
+
+## Sudo  
+
+### Autorisation de commandes à un groupe d'utilisateurs  
+
+Il est possible de créer un groupe d'utilisateurs, qui pourront utiliser un ensemble de commandes spécifiques, en modifiant le sudoers.  
+
+Par exemple, dans le sudoers :  
+
+```shell
+#Création d'un groupe d'utilisateur HELPDESK
+User_Alias HELPDESK = joe, sally
+#Création d'un groupe de commandes HELPCOMMANDS
+Cmnd_Alias HELPCOMMANDS = /usr/sbin/useradd, /usr/bin/passwd
+#Autorisation au groupe HELPDESK de passer les commandes dans HELPCOMMANDS en tant que root
+HELPDESK ALL=(root) HELPCOMMANDS
+```
+
+### Timeout du mot de passe sudo en mémoire  
+
+Dans le sudoers, en ajoutant la ligne suivante, il est possible de modifier le temps durant lequel les utilisateurs n'ont pas besoin de remettre leur mot de passe pour passer une commande avec sudo :  
+
+```shell
+#Ne mémorise pas le mot de passe
+Defaults timestamp_timeout=0
+#Mémorise le mot de passe pendant 30 minutes
+Defaults timestamp_timeout=30
+```
+
+### Lister les paramétrages sudo  
+
+```shell
+#Afficher les paramètres de sudo
+sudo sudo -V
+```
+
+## ssh  
+
+### Création d'alias  
+
+```shell
+vi ~.ssh/config
+#Ajouter les lignes suivantes : 
+Host server1
+  HostName 192.168.1.50
+  User root
+  Port 22
+
+Host server2
+  HostName 192.168.1.51
+  User rooot
+```
+
+### Utilisation de clé d'authentification  
+
+```shell
+#Création de la clé
+ssh-keygen -t rsa
+#En faisant un `ls ~.ssh`, on voit les fichiers id_rsa et id_rsa.pub
+#Le fichier id_rsa.pub doit être transmit au serveur cible
+ssh-copy-id -i id_rsa.pub server1
+ssh-agent bash
+ssh-add
+```
+
+Pour sécuriser cette connexion, il est possible de mofifier le fichier `/etc/ssh/ssh_config`, et modifier la ligne `PermitRootLogin yes` en `PermitRootLogin without-password`. Ceci autorisera uniquement les connexions avec la clé publique déjà partagée.  
+
+## Commande script  
+
+Permet d'enregistrer les commandes et leur sortie dans un fichier.  
+
+```shell
+#Début de l'enregistrement dans le fichier typescript
+script
+[...]
+exit
+#Fin de l'enregistrement dans le fichier typescript
+
+#Afficher les commandes passées et leurs retours
+cat typescript
+```
+
+Permet également de le mettre dans un autre fichier, que quelqu'un d'autre peut afficher en direct.  
+
+```shell
+#Terminal 1
+script -f /tmp/mypipe
+ls
+#Terminal 2
+cat /tmp/mypipe
+  #Les commandes passées sur le terminal 1 s'affiche aussi sur le terminal 2
+#Terminal 1
+exit
+#Stoppe l'enregistrement, et rend la main au terminal 2
+```
+
+## Commande screen  
+
+Nécessite d'être installé au préalable.  
+`yum install -y screen`  
+
+`screen` : Ouvre un nouveau terminal  
+
+Fichier de configuration à la base du home : `.screenrc`  
+
+Exemple de contenu du fichier `.screenrc`  
+```shell
+screen -t master 0 bash
+screen -t s1 1 ssh server1
+screen -t s2 2 ssh server2
+```
+
+En lançant `screen`, le fichier `.screenrc` est lu, et les différentes sessions s'ouvrent.  
+Commandes en `screen` : 
+- `Ctrl+a n` : Terminal suivant (next)  
+- `Ctrl+a p` : Terminal précédent (previous)  
+- `Ctrl+a "` : Liste les terminaux ouverts    
+- `Ctrl+a :` : Ouvre un prompt (Comme sur vi)  
+
+Une fois la commande `screen`, `Ctrl+a :` pour ouvrir le prompt.  
+Il est possible d'envoyer des commandes de façon simultanée à tous les terminaux avec la commande suivante :  
+`:at "#" stuff "<commande>^M"` (^M = Ctrl+M = Retour à la ligne)  
+
