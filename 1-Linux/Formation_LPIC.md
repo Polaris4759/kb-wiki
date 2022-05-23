@@ -561,3 +561,59 @@ Sans le `-r`, le compte est supprimé, mais tous les fichiers/dossiers appartena
 On peut passer la commande suivante pour supprimer son home :   
 `sudo find /home -uid 1002 -delete`  
 
+### Changement de groupe  
+
+`newgrp` : Permet de permuter le groupe principal d'un utilisateur. En faisant un `exit`, on repasse sur le groupe principal par défaut.  
+
+### Gestion d'un groupe  
+
+`groupadd` : Ajouter un groupe  
+`groupmod` : Modifier un groupe  
+`groupdel` : Supprimer un groupe  
+
+`usermod -G <groupes_secondaires>` : Remplace les groupes secondaires (ajouter tous les groupes, séparé par une virgule)  
+
+`gpasswd -a <user> <groupe>` : Ajoute l'utilisateur <user> à <groupe>  
+`gpasswd -M <user1>,<user2> <groupes>` : Ajoute les utilisateurs <user1> et <user2> à <groupe>  
+
+`chgrp -R <groupe> <path>` : Donne la propriété de <path> au groupe <groupe>  
+
+`chmod g+s <path>` : En ajoutant le stickybit au group propriétaire du répertoire <path>, tout ce qui est créé dedans appartient au groupe de <path>, et non pas au groupe de l'utilisateur à l'origine de la création.  
+
+`sudo gpasswd <groupe>` : Créé un mot de passe pour le groupe <groupe>  
+
+### Utiliser PAM pour contrôler les accès utilisateur  
+
+`/etc/pam.d` : Fichiers de configuration de PAM  
+`/lib64/security` : Modules de PAM  
+`/etc/security` : Fichier de configuration des modules  
+
+#### Créer un home directory automatiquement  
+
+Modifier le fichier `/etc/login.defs` pour ne pas créer le home directory à la création (Activé par défaut).  
+
+Vérifier que les modules nécessaires soit présents : `rpm -qa | grep oddjob`
+Si non, les installer `yum install -y oddjob oddjob-mkhomedir`  
+
+Activer le service : `systemctl enable oddjobd`  
+Démarrer le service : `systemctl start oddjobd`  
+
+`sudo authconfig --enablemkhomedir --update` : Activer la création des home   
+
+#### Règles de mots de passe  
+
+`/etc/pam.d/system-auth` : Fichier de configuration pour l'authentification  
+`/etc/security/pwquality.conf` : Fichier de configuration pour les règles de mots de passe  
+
+`pwscore` : Permet de tester la conformité d'un mot de passe (Score de 0 à 100)  
+
+#### Limitation d'utilisation de ressource  
+
+`ulimit -u` : Défini la limite de process lancé par un utilisateur  
+`ulimit -u 10` : Limite à 10 process  
+
+`/etc/security/limits.conf` : Fichier de configuration concernant les limitations de ressources  
+
+#### Limitation d'horaire de connexions  
+
+
