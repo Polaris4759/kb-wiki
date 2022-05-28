@@ -46,11 +46,6 @@ echo "/tmp/a.txt"
 
 `!!` : Représente la dernière commande passée  
 
-Exemple : 
-```shell
-
-```
-
 ## Modifier une partie de la dernière commande  
   
 `^ancien_texte^nouveau_texte`  
@@ -73,6 +68,8 @@ Afficher les utilisateurs appartenant à un groupe
   
 `grep <groupe> /etc/group`  
   
+## Modification d'une variable  
+  
 ## Modifier une variable en suivant un pattern  
   
 En utilisant sed :  
@@ -83,8 +80,6 @@ En utilisant sed :
   
 `var=<chaine>;echo ${var/pattern/chaine_de_remplacement}`  
 `var=<chaine>;echo ${var//pattern/chaine_de_remplacement}` : `//` permet de remplacer toutes les occurrences  
-  
-## Modification d'une variable  
   
 ### Supprimer les x premiers caractères d'une variable  
   
@@ -100,6 +95,22 @@ En utilisant sed :
   
 `var=${var:N:X}`  
   
+### Récupérer le nom ou l'extension d'un fichier dans une variable  
+
+`${fichier%.*}` : Représente le nom  
+`${fichier##*.}` : Représente l'extension  
+
+Exemple :  
+```shell
+$ echo ${fic}
+/home/polaris4759/prometheus/prometheus.yml
+$ echo ${fic%.*}
+/home/polaris4759/prometheus/prometheus
+$ echo ${fic##*.}
+yml
+
+```
+
 # Commandes courantes et leurs syntaxes  
   
 ## addgroup  
