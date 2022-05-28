@@ -124,7 +124,6 @@ $ echo ${test%;*}
 /home/polaris4759
 $ echo ${test##*;}
 /bin/bash
-
 ```
 
 # Commandes courantes et leurs syntaxes  
