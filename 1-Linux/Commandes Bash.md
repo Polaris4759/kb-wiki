@@ -101,7 +101,7 @@ En utilisant sed :
 `${fichier##*.}` : Représente l'extension  
 
 Exemple :  
-```shell
+```
 $ echo ${fic}
 /home/polaris4759/prometheus/prometheus.yml
 $ echo ${fic%.*}
@@ -116,7 +116,7 @@ Dans le premier cas, avant le point présent dans l'expression `%.*`
 2. Tout ce qui se trouve après la dernière occurrence d'un caractère, ou d'une chaîne de caractère.  
 Dans le deuxième cas, après le point présent dans l'expression `%.*`  
 
-```shell
+```
 $ test=$(grep polaris4759 /etc/passwd | awk -F: '{print $6";"$7}')
 $ echo $test
 /home/polaris4759;/bin/bash
