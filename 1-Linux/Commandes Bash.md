@@ -111,9 +111,9 @@ yml
 ```
 
 En réalité, ces commandes permettent de récupérer, selon le cas : 
-1- Tout ce qui se trouve avant un caractère, ou une chaîne de caractère.
+1- Tout ce qui se trouve avant la dernière occurrence d'un caractère, ou d'une chaîne de caractère.
 Dans le premier cas, avant le point présent dans l'expression `%.*`
-@- Tout ce qui se trouve après un caractère, ou une chaîne de caractère.
+@- Tout ce qui se trouve après la dernière occurrence d'un caractère, ou d'une chaîne de caractère.
 Dans le deuxième cas, après le point présent dans l'expression `%.*`
 
 ```shell
