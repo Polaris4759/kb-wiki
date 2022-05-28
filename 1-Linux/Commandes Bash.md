@@ -108,6 +108,22 @@ $ echo ${fic%.*}
 /home/polaris4759/prometheus/prometheus
 $ echo ${fic##*.}
 yml
+```
+
+En réalité, ces commandes permettent de récupérer, selon le cas : 
+1- Tout ce qui se trouve avant un caractère, ou une chaîne de caractère.
+Dans le premier cas, avant le point présent dans l'expression `%.*`
+@- Tout ce qui se trouve après un caractère, ou une chaîne de caractère.
+Dans le deuxième cas, après le point présent dans l'expression `%.*`
+
+```shell
+$ test=$(grep polaris4759 /etc/passwd | awk -F: '{print $6";"$7}')
+$ echo $test
+/home/polaris4759;/bin/bash
+$ echo ${test%;*}
+/home/polaris4759
+$ echo ${test##*;}
+/bin/bash
 
 ```
 
