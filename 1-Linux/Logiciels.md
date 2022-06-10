@@ -178,3 +178,33 @@ Sur la machine qui va se connecter à la machine distante :
 `ssh-keygen`    
 Il faut taper "Entrée" tout le long    
 `ssh-copy-id -i ~/.ssh/id_rsa.pub <remote_host>`    
+
+## Mail depuis Gmail  
+
+```shell
+apt-get install postfix mailutils libsasl2-2 ca-certificates libsasl2-modules
+systemctl enable postfix
+vim /etc/postfix/main.cf
+# Modifier
+relayhost = [smtp.gmail.com]:587
+# Ajouter
+smtp_sasl_auth_enable = yes
+smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
+smtp_sasl_security_options = noanonymous
+smtp_tls_CAfile = /etc/postfix/cacert.pem
+smtp_use_tls = yes
+```
+
+Sur Gmail, Paramètres, activer l'authentification en deux étapes, puis configurer un "Mot de passe d'application".  
+
+```shell
+vim /etc/postfix/sasl_passwd
+[smtp.gmail.com]:587 USERNAME@gmail.com:MDP_Application
+chmod 400 /etc/postfix/sasl_passwd
+postmap /etc/postfix/sasl_passwd
+cd /etc/ssl/certs
+openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key-for-smtp-gmail.pem -out cert-for-smtp-gmail.pem
+cat /etc/ssl/certs/cert-for-smtp-gmail.pem | sudo tee -a /etc/postfix/cacert.pem
+/etc/init.d/postfix reload
+/etc/init.d/postfix status
+```
