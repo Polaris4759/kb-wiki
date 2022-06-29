@@ -28,3 +28,11 @@ Les timestamps doivent être de la forme suivante : 00:00:00
 `t_w` : Largeur    
 `t_h` : Hauteur    
 `x:y` : Position du coin supérieur gauche    
+
+## Ajouter des sous-titre à un fichier .mkv  
+
+`ffmpeg -i input.mkv -sub_charenc 'UTF-8' -f srt -i input.srt -map 0 -map 1:0 "-metadata:s:s:1" "language=en" "-metadata:s:s:1" "title=Eng Full" -c:v copy -c:a copy -c:s srt $output.mkv`  
+
+Cette commande permet d'ajouter un sous-titre `input.srt` au fichier `input.mkv`.
+En spécifiant la langue et le nom du sous-titre avec les options `"-metadata:s:s:X" "language=<lang>"` et `"-metadata:s:s:X" "title=<titre>"`.  
+Le `X` est un chiffre définissant la position du sous-titre, en partant de 0.  
