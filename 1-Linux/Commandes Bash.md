@@ -474,6 +474,25 @@ Afficher les groupes d'un utilisateur
 Informations réseau  
   
 `ip a` : Afficher toutes les informations  
+
+## less  
+
+`↑ ↓` : Déplacer par ligne  
+`ESPACE` : Descendre d’une page  
+`Nj` : Descendre de N lignes  
+`Nk` : Remonter de N lignes  
+`b` : Monter d’une page  
+`g` : ou <	Aller à la première ligne  
+`G` : ou >	Aller à la dernière ligne  
+`Ng` : Allez à la ligne N dans le fichier  
+`Np` : Allez à la N pourcentage du fichier dans le fichier  
+`Ng` : Aller à la Ne ligne  
+`/`motif : Chercher le motif à partir de la position  
+`?`motif : Chercher le motif à avant de la position  
+`n` : Répétez la recherche précédente  
+`N` : Répétez la recherche précédente dans la direction inverse  
+`v` : Transfère le fichier vers l’éditeur par défaut  
+`q` : Quitter le journal  
   
 ## locate  
   
