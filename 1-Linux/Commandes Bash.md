@@ -1,4 +1,4 @@
-# Commandes particulières et autres astuces  
+# Variables spéciales et autres astuces  
   
 ## $?  
   
@@ -7,48 +7,242 @@
 ## $_  
   
 `$_` est une variable contenant le dernier argument passé à la commande lors de la commande précédente  
-
-#### Exemple :  
-
-`mkdir dossier && cd $_` : crée le répertoire "dossier" et s'y déplace  
-
-Ou encore, pour comprendre la différence avec la commande `!$` ci-dessous : 
-
-```shell
-$ echo "hello" > /tmp/a.txt
-$ echo $_
-hello
-# "hello" est le dernier argument passé à la commande "echo"  
-```
-
-## !$
   
-`!$` est une variable contenant le dernier paramètre de la commande précédente, en prenant la commande dans son ensemble  
-
-Exemple : 
-
-```shell
-$ echo "hello" > /tmp/a.txt
-$ echo "!$"
-echo "/tmp/a.txt"
-/tmp/a.txt
-```
-
+#### Exemple :  
+  
+`mkdir dossier && cd $_` : crée le répertoire "dossier" et s'y déplace  
+  
+Ou encore, pour comprendre la différence avec la commande `!$` ci-dessous :  
+  
+```shell  
+$ echo "hello" > /tmp/a.txt  
+$ echo $_  
+hello  
+# "hello" est le dernier argument passé à la commande "echo"  
+```  
+  
+## !$  
+  
+`!$` est une variable contenant le dernier paramètre de la commande précédente, en prenant la ligne dans son ensemble  
+  
+Exemple :  
+  
+```shell  
+$ echo "hello" > /tmp/a.txt  
+$ echo "!$"  
+echo "/tmp/a.txt"  
+/tmp/a.txt  
+```  
+  
 ## !x  
-
+  
 `!x` : "x" étant une lettre. Le shell va chercher la dernière commande commençant par "x" et lancer la commande  
-
+  
 ## !n  
-
+  
 `!n` : "n" étant le numéro de la commande d'après l'inventaire présent dans `history`  
-
+  
 ## !!  
-
+  
 `!!` : Représente la dernière commande passée  
-
+  
+## Utiliser la substitution de variable  
+  
+```shell  
+$ bash -c 'echo $1' _ test  
+test  
+```  
+  
 ## Modifier une partie de la dernière commande  
   
 `^ancien_texte^nouveau_texte`  
+  
+## Modification d'une variable  
+  
+### Modifier une variable en suivant un pattern  
+  
+En utilisant sed :  
+  
+`var=$(sed 's/pattern/chaine_de_remplacement/g' <<< $var)`  
+  
+*Ou aussi*  
+  
+```shell  
+var=<chaine>  
+echo ${var/pattern/chaine_de_remplacement}  
+  ou  
+echo ${var//pattern/chaine_de_remplacement}  
+  '//' permet de remplacer toutes les occurrences  
+```  
+  
+### Supprimer les x premiers caractères d'une variable  
+  
+`var=${var:x}`  
+  *où __x__ correspond au nombre de caractères à supprimer*  
+  
+### Changer la casse d'une variable  
+  
+`var=${var,,}` : Variable en minuscule  
+`var=${var@l}` : Variable en minuscule  
+`var=${var^}`  : 1ère lettre de la variable en majuscule  
+`var=${var@u}`  : 1ère lettre de la variable en majuscule  
+`var=${var^^}` : Variable en majuscule  
+`var=${var@U}` : Variable en majuscule  
+  
+Exemples :  
+  
+```shell  
+$ VAR1="riri"  
+$ VAR2="FiFi"  
+$ echo ${VAR1^} #echo ${VAR1@u}  
+Riri  
+$ echo ${VAR1^^} #echo ${VAR1@U}  
+RIRI  
+$ echo ${VAR2,}  
+fiFi  
+$ echo ${VAR2,,} #echo ${VAR1@L}  
+fifi  
+$ echo ${VAR2,F} #(1ère lettre en minuscule si F majuscule)  
+fiFi  
+$ echo ${VAR2,R}  
+FiFi  
+```  
+  
+### Obtenir X caractères à partir du Nième caractère  
+  
+`var=${var:N:X}`  
+  
+### Supprimer une chaine de caractère dans la variable  
+  
+Pour supprimer des caractères, en partant du début, jusqu'à la première occurrence :  
+`${var#pattern}`  
+Pour supprimer des caractères, en partant du début, jusqu'à la fin de la variable :  
+`${var##pattern}`  
+Pour supprimer des caractères, en partant de la fin, jusqu'à la première occurrence :  
+`${var%pattern}`  
+Pour supprimer des caractères, en partant du début, jusqu'à la fin de la variable :  
+`${var%%pattern}`  
+  
+```  
+$ test=$(grep polaris4759 /etc/passwd | awk -F: '{print $6";"$7}')  
+$ echo $test  
+/home/polaris4759;/bin/bash  
+$ echo ${test%;*}  
+  (Tout ce qui est présent après le ";")  
+/home/polaris4759  
+$ echo ${test#*;}  
+  (Tout ce qui est présent avant le ";")  
+/bin/bash  
+```  
+  
+Autre exemple :  
+  
+```shell  
+$ pwd  
+/tmp/dir1/dir2/dir3  
+$ CurDir=$(pwd)  
+$ echo ${CurDir}  
+/tmp/dir1/dir2/dir3  
+$ echo ${CurDir#/tmp/dir1/dir2/}  
+dir3  
+$ echo ${CurDir#*/}  
+tmp/dir1/dir2/dir3  
+  (Le retrait des caractères se fait jusqu'à la première occurrence)  
+  
+$ echo ${CurDir##*/}  
+dir3  
+  (Le retrait des caractères se fait jusqu'à la dernière occurrence)  
+```  
+  
+Ou encore :  
+(Renommer tous les fichiers .sh en .bash dans un dossier)  
+  
+```shell  
+for f in /scripts  
+do  
+	mv "$s" "${s%.sh}.bash"  
+done  
+```  
+  
+### Récupérer le nom ou l'extension d'un fichier dans une variable  
+  
+Par conséquent, suivant le point précédent, il est possible de récupérer le nom ou l'extension d'un fichier  
+  
+`${fichier%.*}` : Représente le nom  
+`${fichier##*.}` : Représente l'extension  
+  
+Exemple :  
+```  
+$ echo ${fic}  
+/home/polaris4759/prometheus/prometheus.yml  
+$ echo ${fic%.*}  
+/home/polaris4759/prometheus/prometheus  
+$ echo ${fic##*.}  
+yml  
+```  
+  
+### Utiliser une valeur par défaut pour une variable  
+  
+```shell  
+var=${parameter:-defaultValue}  
+```  
+  
+Par exemple, dans un script, définir des valeurs par défaut si elles ne sont pas spécifiées en paramètres :  
+  
+```shell  
+#!/bin/bash  
+WorkDir="${1:-/tmp}"  
+echo "Setting users directories as ${UserDir}"  
+# rest of the script ...  
+```  
+Exemple d'exécution du script :  
+```shell  
+./script.sh /home/<user>/work  	# <--- set work directory as /home/<user>/work  
+./script.sh /tmp/WorkDir		# <--- set work directory as /tmp/WorkDir  
+./script.sh                    	# <--- set work directory as /tmp (default)  
+```  
+  
+### Utiliser une valeur si la variable est vide  
+  
+```shell  
+$ unset test  
+$ echo $test  
+  
+$ echo ${test:=toto}  
+toto  
+$ echo $test  
+toto  
+```  
+  
+*Ne fonctionne pas avec les variables de positions des paramètres d'un script*  
+  
+### Utiliser un message d'erreur si variable non définie ou vide  
+  
+```shell  
+$ unset test  
+$ echo ${test?Erreur : variable non définie}  
+bash: test: Erreur : variable non définie  
+$ echo ${test:?Erreur : variable non définie ou vide}  
+bash: test: Erreur : variable non définie ou vide  
+  
+$ ErrMess="Erreur. Variable non définie ou vide"  
+$ echo ${test:?${ErrMess}}  
+bash: test: Erreur. Variable non définie ou vide  
+```  
+  
+### Lister les variables dont les noms répondent à un pattern  
+  
+```shell  
+$ VAR1="riri"  
+$ VAR2="fifi"  
+$ VAR3="loulou"  
+$ echo "${!VAR*}"  
+VAR1 VAR2 VAR3  
+$ echo "${!VAR@}"  
+VAR1 VAR2 VAR3  
+```  
+  
+# Gestion des utilisateurs  
   
 ## Utilisateurs et groupes  
   
@@ -68,64 +262,6 @@ Afficher les utilisateurs appartenant à un groupe
   
 `grep <groupe> /etc/group`  
   
-## Modification d'une variable  
-  
-## Modifier une variable en suivant un pattern  
-  
-En utilisant sed :  
-  
-``var=`sed 's/pattern/chaine_de_remplacement/g' <<< $var` ``  
-  
-*Ou aussi*  
-  
-`var=<chaine>;echo ${var/pattern/chaine_de_remplacement}`  
-`var=<chaine>;echo ${var//pattern/chaine_de_remplacement}` : `//` permet de remplacer toutes les occurrences  
-  
-### Supprimer les x premiers caractères d'une variable  
-  
-`var=${var:x}`  
-*où __x__ correspond au nombre de caractères à supprimer*  
-  
-### Changer la casse d'une variable  
-  
-`var=${var,,}` : Variable en minuscule.  
-`var=${var^^}`: Variable en majuscule.  
-  
-### Obtenir X caractères à partir du Nième caractère  
-  
-`var=${var:N:X}`  
-  
-### Récupérer le nom ou l'extension d'un fichier dans une variable  
-
-`${fichier%.*}` : Représente le nom  
-`${fichier##*.}` : Représente l'extension  
-
-Exemple :  
-```
-$ echo ${fic}
-/home/polaris4759/prometheus/prometheus.yml
-$ echo ${fic%.*}
-/home/polaris4759/prometheus/prometheus
-$ echo ${fic##*.}
-yml
-```
-
-En réalité, ces commandes permettent de récupérer, selon le cas :  
-1. Tout ce qui se trouve avant la dernière occurrence d'un caractère, ou d'une chaîne de caractère.  
-Dans le premier cas, avant le point présent dans l'expression `%.*`  
-2. Tout ce qui se trouve après la dernière occurrence d'un caractère, ou d'une chaîne de caractère.  
-Dans le deuxième cas, après le point présent dans l'expression `%.*`  
-
-```
-$ test=$(grep polaris4759 /etc/passwd | awk -F: '{print $6";"$7}')
-$ echo $test
-/home/polaris4759;/bin/bash
-$ echo ${test%;*}
-/home/polaris4759
-$ echo ${test##*;}
-/bin/bash
-```
-
 # Commandes courantes et leurs syntaxes  
   
 ## addgroup  
@@ -215,36 +351,36 @@ En combinant les commandes `ls`, `xargs`, et `cp`, il est possible de copier une
 *exemple*  
   
 `ls *.sh | xargs -I % cp % save/%_$(date "+%Y.%m.%d-%H.%M")`  
-
-## cpio 
-
+  
+## cpio  
+  
 `find -name '*.pdf' | cpio -o > /tmp/pdf.cpio` : Créé une archive .cpio  
 `cpio -id < /tmp/pdf.cpio` : Extrait l'archive  
-
-```shell
-cpio -id < <fichier>.cpio
-# -i input
-# -d créé les dossiers indiqués dans l'archive
-```
-
+  
+```shell  
+cpio -id < <fichier>.cpio  
+# -i input  
+# -d créé les dossiers indiqués dans l'archive  
+```  
+  
 ## cut  
-
+  
 Découpe une ligne par exemple  
-
-Exemple : 
-```shell
-$ cut -d: -f7 /etc/passwd | sort -u
-/bin/bash
-/bin/false
-/bin/sync
-/sbin/halt
-/sbin/nologin
-/sbin/shutdown
-
-# -d : Délimiteur. Ici ":"
-# -f : Field, le champ à afficher. Ici, la 7ème colonne.
-```
-
+  
+Exemple :  
+```shell  
+$ cut -d: -f7 /etc/passwd | sort -u  
+/bin/bash  
+/bin/false  
+/bin/sync  
+/sbin/halt  
+/sbin/nologin  
+/sbin/shutdown  
+  
+# -d : Délimiteur. Ici ":"  
+# -f : Field, le champ à afficher. Ici, la 7ème colonne.  
+```  
+  
 ## date  
   
 La commande `date` renvoie la date courante.  
@@ -269,9 +405,9 @@ $ date -r "Commandes Bash.md"
 jeu. 10 févr. 2022 22:40:48 CET  
 ```  
   
-date --date "40 days" : indique la date qu'il sera dans 40 jours
-date --date "40 days ago" : indique la date qu'il était il y a 40 jours
-
+date --date "40 days" : indique la date qu'il sera dans 40 jours  
+date --date "40 days ago" : indique la date qu'il était il y a 40 jours  
+  
 ## dpkg  
   
 Installer un paquet .deb  
@@ -433,10 +569,10 @@ Outil de contrôle d'intégrité et de réparation
 `fsck -y <partition>` : Répond "Oui" à toutes les questions  
   
 ## fuser  
-
+  
 `fuser -cu <path>` : Chercher les process utilisant le path  
 `fuser 80/tcp` : Chercher les process utilisant le port 80  
-
+  
 ## gcc  
   
 Compiler des sources en C  
@@ -474,9 +610,9 @@ Afficher les groupes d'un utilisateur
 Informations réseau  
   
 `ip a` : Afficher toutes les informations  
-
+  
 ## less  
-
+  
 `↑ ↓` : Déplacer par ligne  
 `ESPACE` : Descendre d’une page  
 `Nj` : Descendre de N lignes  
@@ -513,9 +649,9 @@ Permet de lister le contenu d'un dossier
 `-r` : inverse le tri  
   
 ## lsof  
-
+  
 `lsof -i :80` : Affiche les process utilisant le port 80  
-
+  
 ## man  
   
 Manuel de commandes  
@@ -560,9 +696,9 @@ cd /mnt/ntfs
 Donne (entre autre) des infos sur le 1er bit des 10 bits en sortie de `ls -l`  
   
 ## netstat  
-
+  
 `netstat -lntp | grep -w ':80'` : Voir les process utilisé par le port 80  
-
+  
 ## passwd  
   
 `passwd <utilisateur>` : Changer le mot de passe d'un utilisateur  
@@ -638,53 +774,53 @@ On peut le remplacer par `j` pour utiliser BZip2, et faire des archives .bz2
 `j` : bzip2  
   
 ## tee  
-
+  
 Permet d'avoir la sortie d'une commande redirigé vers le terminal, mais aussi vers un fichier  
-
-Exemple : 
+  
+Exemple :  
 `ls | tee liste.txt` : Affiche le contenu du dossier et ajoute également la liste des fichiers dans le fichier liste.txt  
-
+  
 Permet également d'ajouter du texte dans un fichier nécessitant des permissions plus élevées  
-Exemple : 
-```shell
-echo '127.0.0.1 stan' | sudo tee -a /etc/hosts
+Exemple :  
+```shell  
+echo '127.0.0.1 stan' | sudo tee -a /etc/hosts  
 # echo ne nécessite pas de permission  
-# tee précédé de sudo pour exécuté tee avec les droits root
-# -a pour 'append' afin de ne pas écraser le fichier
-```
-
+# tee précédé de sudo pour exécuté tee avec les droits root  
+# -a pour 'append' afin de ne pas écraser le fichier  
+```  
+  
 ## time  
-
+  
 Affiche le temps utilisé par une commande  
-
-```shell
-$ time ls
-file1  file2  file3
-
-real    0m0.003s
-user    0m0.001s
-sys     0m0.001s
-```
-
-## top
-
+  
+```shell  
+$ time ls  
+file1  file2  file3  
+  
+real    0m0.003s  
+user    0m0.001s  
+sys     0m0.001s  
+```  
+  
+## top  
+  
 Affiche la consommation des ressources  
-
+  
 Pour trier par la consommation mémoire : `Shift-m`  
-
+  
 La commande suivante récupère les process qui consomme le plus de mémoire, à 10 reprises, espacées de 5 secondes :  
-```console
-for i in {1..10};do date; top -b -o +%MEM | head -n 17|tail -11;sleep 5;done
-```
-
+```console  
+for i in {1..10};do date; top -b -o +%MEM | head -n 17|tail -11;sleep 5;done  
+```  
+  
 ## touch  
-
+  
 Par défaut, `touch` permet de modifier la date de modification d'un fichier pour le mettre à la date actuelle.  
 `touch` peut être utilisé pour créé un fichier vide. Tout comme `> fichier`.  
-
+  
 `touch` permettant d'agir sur la date de modification d'un fichier, il est possible de définir la date de modification d'un fichier avec la commande suivante :  
 `touch -d '03 May 2022' fichier`  
-
+  
 ## tput  
   
 Positionne le curseur.  
@@ -702,7 +838,7 @@ Positionne le curseur.
   
 ## tty  
 Indique quel terminal est utilisé  
-
+  
 ## umount  
   
 `umount <partition>` : Monter une partition  
@@ -854,6 +990,17 @@ Syntaxe :
 `if [ <variable> <opérateur> <référence> ];then <actions>;else <action>;fi` : Si alors sinon  
 `if [[ <variable> <opérateur> <RegEx> ]];then ...` : RegEx  
   
+Exemple :  
+  (Pour vérifier si un script est lancé avec certaines options)  
+  
+```shell  
+if [[ ${@} =~ "-user" && ${@} =~ "-pass" ]]; then <actions>;fi  
+```  
+  
+Dans la partie `<actions>`, lors d'une vérification par exemple, il est possible d'utiliser les commandes `exit <cr>` ou `return <cr>`.  
+Le `exit <cr>` stoppera l'exécution du script, avec un `echo $?` égale au `<cr>`.  
+Le `return <cr>` continuera l'exécution du script, avec un `echo $?` égale au `<cr>` après le `fi`.  
+  
 # Tableaux  
   
 ## Déclaration  
@@ -892,3 +1039,4 @@ val=`echo "${<tableau>[*]}" | sort -nr | head -1`
 `unset <tableau>`  
 `unset <tableau>[@]`  
 `unset <tableau>[*]`  
+  
