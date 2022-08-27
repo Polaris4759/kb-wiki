@@ -841,7 +841,17 @@ Indique quel terminal est utilisé
   
 ## umount  
   
-`umount <partition>` : Monter une partition  
+`umount <partition>` : Démonter une partition  
+
+`<partition` peut être le chemin du disque monté (/dev/sdb1), ou son point de montage (/mnt/cleusb)  
+
+Si le `unmount` retourne une ligne "Cible active", il est possible de trouver quel process bloque le `unmount`.  
+
+Exemple :  
+```shell
+lsof | grep -E "sdb1|cleusb"
+watch     2317             stan  cwd    unknown         /mnd/cleusb
+```
   
 ## uname  
   
