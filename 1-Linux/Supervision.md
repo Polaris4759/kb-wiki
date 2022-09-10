@@ -134,10 +134,10 @@ Accès : `<IP>:9182`
 ```shell  
 # Installation de AlertManager  
 cd /tmp  
-wget https://github.com/prometheus/alertmanager/releases/download/v0.22.2/alertmanager-0.22.2.linux-amd64.tar.gz  
-tar xzf alertmanager-0.22.2.linux-amd64.tar.gz  
+curl -s https://api.github.com/repos/prometheus/alertmanager/releases/latest | grep browser_download_url|grep linux-amd64|cut -d '"' -f 4|wget -qi -  
+tar xzf alertmanager-*.linux-amd64.tar.gz  
 mkdir -p /etc/prometheus/alertmanager  
-mv -v alertmanager-0.22.2.linux-amd64 /etc/prometheus/alertmanager  
+mv -v alertmanager-*.linux-amd64 /etc/prometheus/alertmanager  
 # Attribution des droits  
 chown -Rfv root:root /etc/prometheus/alertmanager  
 mkdir -v /etc/prometheus/alertmanager/data  
