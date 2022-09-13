@@ -6,7 +6,7 @@ Les commandes MariaDB peuvent être lancées depuis le shell directement, comme 
 `mariadb -u root -e "<commande>"`  
 Ou bien après s'être connecté : 
 ```shell
-\# mariadb -u root
+mariadb -u root
 MariaDB [(none)]> <commande>
 ```
 

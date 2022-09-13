@@ -12,7 +12,7 @@ wmic process where "name='<nom_process'" get ExecutablePath
 
 `netsh advfirewall firewall add rule name="ICMP Allow incoming V4 echo request" protocol=icmpv4:8,any dir=in action=allow`  
 
-# Rechercher un service  
+## Rechercher un service  
 
 `sc.exe query | find /i <service>`  
 
