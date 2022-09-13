@@ -610,6 +610,10 @@ Afficher les groupes d'un utilisateur
 Informations réseau  
   
 `ip a` : Afficher toutes les informations  
+`ip addr` : Afficher toutes les informations  
+`ip -4 addr` : Afficher les adresses en IPv4 uniquement  
+`ip -6 addr` : Afficher les adresses en IPv6 uniquement    
+`ip route` : Afficher la table de routage  
   
 ## less  
   
@@ -703,6 +707,26 @@ Donne (entre autre) des infos sur le 1er bit des 10 bits en sortie de `ls -l`
   
 `passwd <utilisateur>` : Changer le mot de passe d'un utilisateur  
   
+## printf  
+
+Permet d'afficher du contenu sur le terminal, comme un `echo`.  
+La différence étant qu'un `echo` intégre un retour à la ligne à la fin de la commande.
+Autre différence, `echo` affichera du texte brut, là où `printf` interprètera certaines commandes.  
+
+Par exemple, pour afficher le texte en couleur, `printf` le fera par défaut, alors qu'avec un `echo` il faudra rajouter l'option `-e` : 
+
+```shell
+printf "\e[33mErreur\e[0m"
+# Identique à : 
+echo -e "\e[33mErreur\e[0m"
+```
+
+Avec `printf`, il est possible de déterminer un nombre de répétition d'un caractère : 
+
+```shell
+printf "Info%-3s : \n" # Affiche "Info   : (Info suivi de 3 espaces)
+```
+
 ## rename  
   
   
