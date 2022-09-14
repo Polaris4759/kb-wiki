@@ -226,3 +226,11 @@ URL de Prometheus dans `URL`
 Renseignez les champs `User` et `Password`  
 `Create` > `Import` > `1860` pour le dashboard "Node Exporter Full"  
   
+# Installation Alerta  
+
+```shell
+wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+sudo apt-get update
+sudo apt-get install -y mongodb-org
+```
