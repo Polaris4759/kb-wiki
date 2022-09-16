@@ -13,7 +13,11 @@
     
 ## Découper une vidéo    
   
-`ffmpeg -i <fichier_input> -ss <timestamp_début> -to <timestamp_fin> -async 1 <fichier_output>`    
+`ffmpeg -i <fichier_output> -ss <timestamp_début> -to <timestamp_fin> -async 1 <fichier_output>`    
+`ffmpeg -ss X -i <fichier_output> -c copy -t Y <fichier_output>`  
+
+`X` : Délai depuis le début, en secondes  
+`Y` : Durée de la vidéo en sortie, en seconde, ou sous ce format : `HH:MM:SS.xxx`  
   
 Les timestamps doivent être de la forme suivante : 00:00:00    
   
