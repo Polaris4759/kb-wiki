@@ -228,9 +228,25 @@ Renseignez les champs `User` et `Password`
   
 # Installation Alerta  
 
+## Installation complète  
+
 ```shell
 wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
 echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
 sudo apt-get update
 sudo apt-get install -y mongodb-org
+# Installation incomplète, tests en cours
 ```
+
+## Installation via Docker  
+
+```shell
+docker run --name alerta-db -d mongo
+export DATABASE_URL=mongodb://db:27017/monitoring
+docker run --name alerta-web -e DATABASE_URL=$DATABASE_URL --link alerta-db:db -d -p 8080:8080 alerta/alerta-web
+```
+
+Accès à Alerta via : <IP>:8080/
+Accès à l'API Alerta via : <IP>:8080/api
+
+*Sources : https://github.com/alerta/docker-alerta*

@@ -295,6 +295,9 @@ Gestionnaire d'installation de paquets
 `apt autoremove <paquet>` : Désinstaller  
 `apt-file search <fichier>` : Chercher à quel paquet appartient un fichier  
 `apt-cache search <paquet>` : Chercher un paquet dans le repo  
+`apt-cache madison <paquet>` : Chercher un paquet et afficher le repo dans lequel il est disponible  
+`apt-cache show <paquet>` : Chercher un paquet et afficher ses informations  
+`apt-cache depends <paquet>` : Chercher un paquet et afficher ses dépendances  
   
 ## blkid  
   
