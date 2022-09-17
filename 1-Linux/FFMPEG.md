@@ -21,10 +21,35 @@
   
 Les timestamps doivent être de la forme suivante : 00:00:00    
   
+## Convertir une vidéo  
+
+mkv to mp4  
+
+`ffmpeg -i ironman2trailer.mkv -vcodec copy -acodec copy -absf aac_adtstoasc output.mp4`  
+
+mkv to webm  
+
+`ffmpeg -i -f webm -vcodec libvpx -acodec libvorbis output.webm`  
+
 ## Convertir une vidéo en GIF    
   
 `ffmpeg -i <fichier_input> -vf "fps=30,scale=<résolution>:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 <fichier_sortie>`    
   
+## Fusionner des vidéos  
+
+`ffmpeg -i opening.mkv -i episode.mkv -i ending.mkv -filter_complex "[0:v] [0:a] [1:v] [1:a] [2:v] [2:a] concat=n=3:v=1:a=1 [v] [a]" -map "[v]" -map "[a]" output.mkv`  
+
+```shell
+$ cat mylist.txt
+file '/path/to/file1'
+file '/path/to/file2'
+file '/path/to/file3'
+    
+$ ffmpeg -f concat -safe 0 -i mylist.txt -c copy output.mp4
+```
+
+`ffmpeg -i "concat:input1|input2" -codec copy output.mkv`  
+
 ## Rogner une vidéo    
   
 `ffmpeg -i <fichier_input> -filter:v "crop=t_w:t_h:x:y" <fichier_output>`    
