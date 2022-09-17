@@ -37,8 +37,10 @@ mkv to webm
   
 ## Fusionner des vidéos  
 
+### Méthode 1  
 `ffmpeg -i opening.mkv -i episode.mkv -i ending.mkv -filter_complex "[0:v] [0:a] [1:v] [1:a] [2:v] [2:a] concat=n=3:v=1:a=1 [v] [a]" -map "[v]" -map "[a]" output.mkv`  
 
+### Méthode 2  
 ```shell
 $ cat mylist.txt
 file '/path/to/file1'
@@ -48,6 +50,7 @@ file '/path/to/file3'
 $ ffmpeg -f concat -safe 0 -i mylist.txt -c copy output.mp4
 ```
 
+### Méthode 3  
 `ffmpeg -i "concat:input1|input2" -codec copy output.mkv`  
 
 ## Rogner une vidéo    
