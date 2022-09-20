@@ -228,16 +228,6 @@ Renseignez les champs `User` et `Password`
   
 # Installation Alerta  
 
-## Installation complète  
-
-```shell
-wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
-echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
-sudo apt-get update
-sudo apt-get install -y mongodb-org
-# Installation incomplète, tests en cours
-```
-
 ## Installation via Docker  
 
 ```shell
@@ -250,3 +240,19 @@ Accès à Alerta via : <IP>:8080/
 Accès à l'API Alerta via : <IP>:8080/api
 
 *Sources : https://github.com/alerta/docker-alerta*
+
+
+## Installation manuelle  
+## *Installation incomplète, tests en cours*
+
+```shell
+#Instalation de mongodb
+wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+sudo apt-get update
+sudo apt-get install -y mongodb-org
+
+
+```
+
+*Source pour MongoDB : https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-debian/*
