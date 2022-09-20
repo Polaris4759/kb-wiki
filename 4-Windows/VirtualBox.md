@@ -2,6 +2,13 @@
 
 ## Installation des Additions invité VirtualBox  
 
+### Windows  
+
+Dans le menu de la machine virtuelle, "Périphériques", il faut cliquer sur "Insérer l'image CD des Additions invité".  
+Exécuter `VBoxWindowsAdditions.exe` pour installer les Addition invité.  
+
+### Linux  
+
 Dans le menu de la machine virtuelle, "Périphériques", il faut cliquer sur "Insérer l'image CD des Additions invité".  
 
 Dans la machine virtuel, se déplacer dans `/media/cdrom`, et faire un `ls`  
