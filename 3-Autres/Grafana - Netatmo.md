@@ -5,7 +5,7 @@
  - InfluxDB  
 `pip install influxdb`  
 
- - lnetatmo
+ - lnetatmo  
 `pip install --upgrade lnetatmo==1.6.0`  
 
 ## Téléchargement d'un script python  
@@ -17,10 +17,23 @@ wget https://raw.githubusercontent.com/Polaris4759/kb-wiki/master/3-Autres/src/n
 sudo mv netatmo_influx.py /usr/local/bin
 ```
 
-Après l'avoir déplacé dans un dossier adequat, création d'un cron pour mettre les données à jour  
+Il faut créer une API sur le site [développeur de Netatmo](https://dev.netatmo.com/apps/createanapp#form), récupérer les valeurs de "CLIENT_ID" & "CLIENT_SECRET", et les ajouter dans le script.  
+
+## Création d'un cron pour mettre les données à jour  
 
 ```shell
 sudo crontab -l > /tmp/netatmo_crontab
 echo "*/5 * * * * root  /usr/local/bin/netatmo_influx.py > /dev/null 2>&1" >> /tmp/netatmo_crontab
 sudo crontab /tmp/netatmo_crontab
 ```
+
+## Ajout dans Grafana  
+
+### Création d'une database InfluxDB  
+
+ - URL : `http://<IP>:8086`  
+ - Database : `netatmo`  
+
+### Import du dashboard Grafana  
+
+ - Code : `12378`  
