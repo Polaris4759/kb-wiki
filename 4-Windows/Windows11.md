@@ -26,7 +26,7 @@ Cette commande va lister les exécutables d'explorateurs de fichiers disponibles
 3. Ouvrir ensuite l'éditeur de registre et se rendre au chemin suivant :  
 **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon**  
 4. Modifier la clé "Shell" et y copier le chemin récupéré à l'étape 2, précédé de "C:"  
-
+5. Redémarrer le PC.  
 
 
 ## Changer le menu contextuel pour avoir celui complet par défaut :  
