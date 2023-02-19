@@ -1,6 +1,6 @@
 # Windows 11
   
-## Remettre la barre d'outil Windows 10 en haut de l'explorateur de fichier  
+## Remettre le ruban Windows 10 en haut de l'explorateur de fichier  
 
 Dans un terminal Windows en tant qu'admin :  
 
@@ -9,12 +9,25 @@ reg add "HKCU\Software\Classes\CLSID\{d93ed569-3b3e-4bff-8355-3c44f6a52bb5}\Inpr
 ```
 Puis redémarrer l'exlorer.exe
 
-Pour revenir à la barre d'outil Windows 11 :  
+Pour revenir au ruban Windows 11 :  
 
 ```Batchfile
 reg delete "HKCU\Software\Classes\CLSID\{d93ed569-3b3e-4bff-8355-3c44f6a52bb5}" /f
 ```  
 Puis redémarrer l'exlorer.exe
+
+
+Si cette méthode ne fonctionne pas, tester celle-ci :  
+
+1. Ouvrir un cmd en tant qu'admin  
+2. Passer la commande suivante :  
+fsutil hardlink list c:\windows\explorer.exe
+Cette commande va lister les exécutables d'explorateurs de fichiers disponibles  
+3. Ouvrir ensuite l'éditeur de registre et se rendre au chemin suivant :  
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon  
+4. Modifier la clé "Shell" et y copier le chemin récupéré à l'étape 2, précédé de "C:"  
+
+
 
 ## Changer le menu contextuel pour avoir celui complet par défaut :  
 
