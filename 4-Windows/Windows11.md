@@ -21,7 +21,9 @@ Si cette méthode ne fonctionne pas, tester celle-ci :
 
 1. Ouvrir un cmd en tant qu'admin  
 2. Passer la commande suivante :  
-fsutil hardlink list c:\windows\explorer.exe
+```batch
+fsutil hardlink list c:\windows\explorer.exe  
+```
 Cette commande va lister les exécutables d'explorateurs de fichiers disponibles  
 3. Ouvrir ensuite l'éditeur de registre et se rendre au chemin suivant :  
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon  
