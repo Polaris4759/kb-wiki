@@ -21,12 +21,10 @@ Si cette méthode ne fonctionne pas, tester celle-ci :
 
 1. Ouvrir un cmd en tant qu'admin  
 2. Passer la commande suivante :  
-```batch
-fsutil hardlink list c:\windows\explorer.exe  
-```
+**fsutil hardlink list c:\windows\explorer.exe**  
 Cette commande va lister les exécutables d'explorateurs de fichiers disponibles  
 3. Ouvrir ensuite l'éditeur de registre et se rendre au chemin suivant :  
-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon  
+**HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon**  
 4. Modifier la clé "Shell" et y copier le chemin récupéré à l'étape 2, précédé de "C:"  
 
 
