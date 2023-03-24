@@ -14,14 +14,14 @@ cat <fichier> | jq
 cat <fichier> | jq -r 'keys | .[]'
 ```
 
-### Lister les clés dans une clé  
+### Lister les clés dans un objet  
 
 ```shell
-cat <fichier> | jq -r '.<clé>[] | keys'
+cat <fichier> | jq -r '.<objet>[] | keys'
 ```
 
 ### Récupérer la valeur d'une clé  
 
 ```shell
-cat <fichier> | jq -r '.<clé>[<index>].<clé>
+cat <fichier> | jq -r '.<objet>[<index>].<clé>
 ```
