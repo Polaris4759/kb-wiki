@@ -1,0 +1,39 @@
+#DEBUT SCRIPT
+    Write-Output "Début du script"
+    Add-Type -AssemblyName System.Windows.Forms
+    $m = 0 #COMPTEUR MOVE
+    $d = 180 #DELAI EN SECONDES
+    $DEBUG = 0
+
+#DEBUT BOUCLE
+    while ($true)
+    {
+#INCREMENTATION COMPTEUR
+        $c = $c + 1
+#POSITION CURSEUR INITIALE
+        $X = [System.Windows.Forms.Cursor]::Position.X;$Y = [System.Windows.Forms.Cursor]::Position.Y
+#ATTENTE
+        Start-Sleep -Seconds $d
+#POSITION CURSEUR APRES ATTENTE
+        $Xnew = [System.Windows.Forms.Cursor]::Position.X;$Ynew = [System.Windows.Forms.Cursor]::Position.Y
+#TEST POSITIONS
+        If(($X -eq $Xnew) -and ($Y -eq $Ynew))
+          {
+#DEPLACEMENT CURSEUR SI POSITIONS IDENTIQUES
+            $Xmove = $Xnew + 10;$Ymove = $Ynew;[System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point(($Xmove), $Ymove)
+            if( $DEBUG -eq 1 ){Write-Output "Xmove: $Xmove | Ymove: $Ymove"}
+            Start-Sleep -Milliseconds 50
+            $Xmove = $Xnew + 10;$Ymove = $Ynew + 10;[System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point(($Xmove), $Ymove)
+            if( $DEBUG -eq 1 ){Write-Output "Xmove: $Xmove | Ymove: $Ymove"}
+            Start-Sleep -Milliseconds 50
+            $Xmove = $Xnew;$Ymove = $Ynew + 10;[System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point(($Xmove), $Ymove)
+            if( $DEBUG -eq 1 ){Write-Output "Xmove: $Xmove | Ymove: $Ymove"}
+            Start-Sleep -Milliseconds 50
+            $Xmove = $Xnew;$Ymove = $Ynew;[System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point(($Xmove), $Ymove)
+            if( $DEBUG -eq 1 ){Write-Output "Xmove: $Xmove | Ymove: $Ymove"}
+            $m = $m + 1
+            $I = $m * $d
+            Write-Output "Tu n'as pas bougé pendant $I secondes"
+          }
+
+    }
