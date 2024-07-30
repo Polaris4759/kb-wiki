@@ -24,7 +24,7 @@ wsl --list verbose
 
 *Exemple :*  
 
-```
+>```
 PS C:\Windows\system32> wsl --list --verbose
   NAME            STATE           VERSION
 * Ubuntu          Running         1
