@@ -25,11 +25,11 @@ wsl --list verbose
 *Exemple :*  
 
 >```
-PS C:\Windows\system32> wsl --list --verbose
-  NAME            STATE           VERSION
-* Ubuntu          Running         1
-  Ubuntu-22.04    Running         1
-```
+>PS C:\Windows\system32> wsl --list --verbose
+>  NAME            STATE           VERSION
+>* Ubuntu          Running         1
+>  Ubuntu-22.04    Running         1
+>```
 
 ```powershell
 #Changer la version par défaut  
