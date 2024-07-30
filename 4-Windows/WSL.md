@@ -22,8 +22,6 @@ Dans Powershell :
 wsl --list verbose  
 ```
 
-*Exemple :*  
-
 >```
 >PS C:\Windows\system32> wsl --list --verbose
 >  NAME            STATE           VERSION
@@ -37,11 +35,10 @@ wsl --list verbose
 wsl --set-default <Distribution Name>  
 ```
 
-*Exemple :*  
-```
-PS C:\Windows\system32> wsl --set-default Ubuntu-22.04
-L’opération a réussi.
-```
+>```
+>PS C:\Windows\system32> wsl --set-default Ubuntu-22.04
+>L’opération a réussi.
+>```
 
 *Résultat :*  
 
