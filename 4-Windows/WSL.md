@@ -20,21 +20,32 @@ Dans Powershell :
 ```powershell
 #Lister les versions installées  
 wsl --list verbose  
+```
 
+*Exemple :*  
+
+```
 PS C:\Windows\system32> wsl --list --verbose
   NAME            STATE           VERSION
 * Ubuntu          Running         1
   Ubuntu-22.04    Running         1
+```
 
+```powershell
 #Changer la version par défaut  
 
 wsl --set-default <Distribution Name>  
+```
 
+*Exemple :*  
+```
 PS C:\Windows\system32> wsl --set-default Ubuntu-22.04
 L’opération a réussi.
+```
 
-#Résultat  
+*Résultat :*  
 
+```
 PS C:\Windows\system32> wsl --list --verbose
   NAME            STATE           VERSION
 * Ubuntu-22.04    Running         1
