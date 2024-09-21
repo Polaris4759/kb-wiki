@@ -52,6 +52,10 @@ La commande va vérifier si l'image est présente en local, et si ce n'est pas l
 
 `docker container start webGSD`  
 
+### Lister les conteneurs démarrés  
+
+`docker ps -a`  
+
 ### Supprimer un conteneur  
 
 `docker container rm webGSD`  
