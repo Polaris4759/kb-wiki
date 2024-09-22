@@ -138,3 +138,15 @@ Ici, on peut utiliser des métacaractères spécifiques:
 `g/<motif>` : Renvoi une liste des correspondance    
 `<ligne>w <fic>` : Ecrit toutes les lignes dans un fichier `<fic>`    
 
+# Commandes diverses  
+
+`:x,y sort` : Tri les lignes x à y  
+
+# Colorscheme  
+
+Chemin : /usr/share/vim/vim82/colors/ ou ~/.vim/colors/  
+
+Couleurs :  
+
+XTerm :  
+![XTermColorCodes](../99-Resources/XTerm_Colors_codes.png)  
