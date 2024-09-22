@@ -144,8 +144,9 @@ Ici, on peut utiliser des métacaractères spécifiques:
 
 # Colorscheme  
 
-==Chemin couleurs :== /usr/share/vim/vim82/colors/ ou ~/.vim/colors/  
-**_Chemin syntaxes :_** /usr/share/vim/vim82/syntax/ ou ~/.vim/syntax/  
+> [!NOTE]
+> **Chemin couleurs :** /usr/share/vim/vim82/colors/ ou ~/.vim/colors/  
+> **Chemin syntaxes :** /usr/share/vim/vim82/syntax/ ou ~/.vim/syntax/  
 
 _Couleurs :_  
 
