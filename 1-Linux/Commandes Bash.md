@@ -713,8 +713,9 @@ Donne (entre autre) des infos sur le 1er bit des 10 bits en sortie de `ls -l`
 ## printf  
 
 Permet d'afficher du contenu sur le terminal, comme un `echo`.  
-La différence étant qu'un `echo` intégre un retour à la ligne à la fin de la commande.
-Autre différence, `echo` affichera du texte brut, là où `printf` interprètera certaines commandes.  
+> [!IMPORTANT]  
+> La différence étant qu'un `echo` intégre un retour à la ligne à la fin de la commande.  
+> Autre différence, `echo` affichera du texte brut, là où `printf` interprètera certaines commandes.  
 
 Par exemple, pour afficher le texte en couleur, `printf` le fera par défaut, alors qu'avec un `echo` il faudra rajouter l'option `-e` : 
 
