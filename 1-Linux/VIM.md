@@ -149,7 +149,7 @@ Chemin : /usr/share/vim/vim82/colors/ ou ~/.vim/colors/
 Couleurs :  
 
 XTerm :  
-![XTermColorCodes](../99-Resources/XTerm_Colors_codes.png)  
+![XTermColorCodes](../99-Resources/colorscheme/XTerm_Colors_codes.png)  
 
 ```shell
 	Suggested color names (these are available on most systems):
