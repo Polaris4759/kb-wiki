@@ -150,3 +150,16 @@ Couleurs :
 
 XTerm :  
 ![XTermColorCodes](../99-Resources/XTerm_Colors_codes.png)  
+
+```shell
+	Suggested color names (these are available on most systems):
+	    Red		LightRed	DarkRed
+	    Green	LightGreen	DarkGreen	SeaGreen
+	    Blue	LightBlue	DarkBlue	SlateBlue
+	    Cyan	LightCyan	DarkCyan
+	    Magenta	LightMagenta	DarkMagenta
+	    Yellow	LightYellow	Brown		DarkYellow
+	    Gray	LightGray	DarkGray
+	    Black	White
+	    Orange	Purple		Violet
+```
