@@ -144,9 +144,10 @@ Ici, on peut utiliser des métacaractères spécifiques:
 
 # Colorscheme  
 
-Chemin : /usr/share/vim/vim82/colors/ ou ~/.vim/colors/  
+**_Chemin couleurs :_** /usr/share/vim/vim82/colors/ ou ~/.vim/colors/  
+**_Chemin syntaxes :_** /usr/share/vim/vim82/syntax/ ou ~/.vim/syntax/  
 
-Couleurs :  
+_Couleurs :_  
 
 XTerm :  
 ![XTermColorCodes](../99-Resources/bash_colorscheme/XTerm_Colors_codes.png)  
