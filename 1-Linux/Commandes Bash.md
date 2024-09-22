@@ -995,7 +995,14 @@ Permet de modifier des images, selon plusieurs options.
 ***Rogner une image :***  
   
 `convert <fic_src> -crop <largeur_finale>x<hauteur_finale>+<pox_x>+<pos_y> <fic_sortie>`  
-exemple : `convert 01.png -crop 1000x500+550+350 croped-01.png` va créé un fichier croped-01.png en partant de l'image 01.png, d'une largeur de 1000px, d'une hauteur de 500px, en partant de la position 550 depuis la gauche de l'image d'origine, et de la position 350 depuis le haut de l'image d'origine.  
+
+> [!NOTE]
+> `convert 01.png -crop 1000x500+550+350 croped-01.png`  
+> va créé un fichier croped-01.png en partant de l'image 01.png,  
+> d'une largeur de 1000px,  
+> d'une hauteur de 500px,  
+> en partant de la position 550 depuis la gauche de l'image d'origine,  
+> et de la position 350 depuis le haut de l'image d'origine.  
   
 # Opérations  
   
