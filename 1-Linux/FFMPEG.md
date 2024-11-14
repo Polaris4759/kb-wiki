@@ -68,3 +68,7 @@ $ ffmpeg -f concat -safe 0 -i mylist.txt -c copy output.mp4
 Cette commande permet d'ajouter un sous-titre `input.srt` au fichier `input.mkv`.
 En spécifiant la langue et le nom du sous-titre avec les options `"-metadata:s:s:X" "language=<lang>"` et `"-metadata:s:s:X" "title=<titre>"`.  
 Le `X` est un chiffre définissant la position du sous-titre, en partant de 0.  
+
+## Créer un gif à partir d'images  
+
+`ffmpeg -y -framerate 2 -pattern_type glob -i '*.png' -r 15 -vf scale=430:-1 output.gif`  
