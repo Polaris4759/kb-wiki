@@ -1,4 +1,4 @@
-#Suppression des doublons dans l'agenda Google  
+# Suppression des doublons dans l'agenda Google  
 
 Il faut :  
 - Récupérer l'ID de l'agenda dans les paramètres Google Agenda  
