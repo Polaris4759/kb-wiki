@@ -704,12 +704,18 @@ Donne (entre autre) des infos sur le 1er bit des 10 bits en sortie de `ls -l`
   
 ## netstat  
   
-`netstat -lntp | grep -w ':80'` : Voir les process utilisé par le port 80  
+`netstat -tulnp | grep -w ':80'` : Voir les process utilisé par le port 80  
   
 ## passwd  
   
 `passwd <utilisateur>` : Changer le mot de passe d'un utilisateur  
   
+## paste  
+
+Mergie lines  
+
+`ls | paste -sd "," -`  
+
 ## printf  
 
 Permet d'afficher du contenu sur le terminal, comme un `echo`.  
