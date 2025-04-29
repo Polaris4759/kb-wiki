@@ -37,11 +37,13 @@ done
 ```
 
 Explication :  
--t : supprime les \n à la fin de chaque ligne.  
+
+> -t : supprime les \n à la fin de chaque ligne.  
 < <(cmd) : on lit la sortie de cmd comme une liste de lignes.  
 ${lignes[@]} : on accède à toutes les lignes.  
 
 Avantages :  
-Très lisible et moderne (Bash 4+).  
+
+> Très lisible et moderne (Bash 4+).  
 Permet d'accéder à la ligne n, à la dernière, aux indices pairs/impaire, etc.  
 Idéal pour des traitements multi-passe ou pour garder les lignes en mémoire.  
