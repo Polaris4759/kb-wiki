@@ -1,4 +1,4 @@
-# Paquets  
+# <a name="sommaire"></a>Paquets  
   
 > ### imagemagick  
   
@@ -14,7 +14,7 @@
   
 >>> Permet d'automatiser la synchronisation de dossiers locaux et distants  
 
-> ### pdftotext  
+> ### [pdftotext](#pdftotexqt)  
 
 >> Outil OCR permettant de retranscrire des PDF en txt  
   
@@ -213,7 +213,7 @@ cat /etc/ssl/certs/cert-for-smtp-gmail.pem | sudo tee -a /etc/postfix/cacert.pem
 /etc/init.d/postfix status
 ```
 
-## pdftotext  
+## <a name="pdftotext"></a>[pdftotext](#sommaire)  
 
 ### Installation  
 
