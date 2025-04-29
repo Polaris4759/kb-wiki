@@ -14,7 +14,7 @@
   
 >>> Permet d'automatiser la synchronisation de dossiers locaux et distants  
 
-> ### pdftotext
+> ### [pdftotext](#pdftotext-1)  
 
 >> Outil OCR permettant de retranscrire des PDF en txt  
   
@@ -26,7 +26,7 @@
   
 > ```bash sudo /opt/lampp/lampp security```  
   
-> ### samba
+> ### [samba](#samba-1)  
   
 >> Partage de dossiers et d'imprimantes au sein d'un réseau local  
 Suite d'outils qui permettent de gérer le protocole SMB (ou CIFS) sous Linux.  
@@ -213,7 +213,7 @@ cat /etc/ssl/certs/cert-for-smtp-gmail.pem | sudo tee -a /etc/postfix/cacert.pem
 /etc/init.d/postfix status
 ```
 
-## pdftotext  
+## [pdftotext](#paquets)  
 
 ### Installation  
 
