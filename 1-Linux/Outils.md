@@ -123,7 +123,7 @@ Modification des permissions du répertoire hébergeant les médias
 Pour accéder au serveur :   
 `http://YOUR_SERVER_IP:32400/web`    
   
-## <a name="samba"></a>(Samba)[#sommaire]  
+## <a name="samba"></a> (Samba)[#sommaire]  
   
 Installation    
 `apt update && apt install -y samba`    
@@ -213,7 +213,7 @@ cat /etc/ssl/certs/cert-for-smtp-gmail.pem | sudo tee -a /etc/postfix/cacert.pem
 /etc/init.d/postfix status
 ```
 
-## <a name="pdftotext"></a>[pdftotext](#sommaire)  
+## <a name="pdftotext"></a> [pdftotext](#sommaire)  
 
 ### Installation  
 
