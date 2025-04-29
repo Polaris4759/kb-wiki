@@ -13,6 +13,10 @@
 >> Client FTP  
   
 >>> Permet d'automatiser la synchronisation de dossiers locaux et distants  
+
+> ### pdftotext  
+
+>> Outil OCR permettant de retranscrire des PDF en txt  
   
 > ### xampp  
   
@@ -207,4 +211,18 @@ openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key-for-smtp-g
 cat /etc/ssl/certs/cert-for-smtp-gmail.pem | sudo tee -a /etc/postfix/cacert.pem
 /etc/init.d/postfix reload
 /etc/init.d/postfix status
+```
+
+## pdftotext  
+
+### Installation  
+
+```shell
+apt update && apt install poppler-utils
+```
+
+### Utilisation  
+
+```shell
+pdftotext -layout input.pdf output.txt
 ```
