@@ -1,4 +1,4 @@
-# <a name="sommaire"></a>Paquets  
+# <a name="sommaire"></a> Paquets  
   
 > ### imagemagick  
   
@@ -123,7 +123,7 @@ Modification des permissions du répertoire hébergeant les médias
 Pour accéder au serveur :   
 `http://YOUR_SERVER_IP:32400/web`    
   
-## <a name="samba"></a> (Samba)[#sommaire]  
+## <a name="samba"></a> [Samba](#sommaire)  
   
 Installation    
 `apt update && apt install -y samba`    
