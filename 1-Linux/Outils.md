@@ -123,7 +123,7 @@ Modification des permissions du répertoire hébergeant les médias
 Pour accéder au serveur :   
 `http://YOUR_SERVER_IP:32400/web`    
   
-## Samba  
+## [Samba](#paquets)  
   
 Installation    
 `apt update && apt install -y samba`    
